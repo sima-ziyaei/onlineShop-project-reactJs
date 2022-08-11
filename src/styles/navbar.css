@@ -1,0 +1,27 @@
+.svgContain {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 194px;
+}
+
+.svgContain .shape-fill {
+    fill: #FFA5A4;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+    .svg {
+        width: calc(100% + 1.3px);
+        height: 135px;
+    }
+}
