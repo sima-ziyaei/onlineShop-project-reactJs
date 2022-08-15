@@ -1,7 +1,7 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../Contexts/Context";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 
 export default function ManageForm() {
   const required = "اجباری است";
@@ -51,7 +51,7 @@ export default function ManageForm() {
         }, 400);
       }}
     >
-      {({ errors, touched, isValidating }) => (
+      {({ errors, touched }) => (
         <div className=" mt-64 mb-20 flex flex-col justify-center items-center w-[100%] h-[500px]">
           <div className="border-2 border-[#ffbd07] w-[30%] h-[90%] rounded-2xl">
             <Form className="flex flex-col justify-center items-center">
@@ -88,6 +88,7 @@ export default function ManageForm() {
               <button className="border-2 border-[#ffbd07] my-4" type="submit">
                 Submit
               </button>
+              <button className="border-2 border-[#ffbd07] my-4" onClick={()=>navigate('/')}> بازگشت به سایت</button>
             </Form>
           </div>
         </div>
