@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Layout/Navbar';
-import Home from './Components/Home/Home';
-import ManageForm from './Components/Manage/ManageForm';
-import Cart from './Components/Cart/Cart';
-import Manage from './Components/Manage/Manage';
+import Home from './pages/Home';
+import ManageForm from './pages/ManageForm';
+import Cart from './pages/Cart';
+// import Manage from './Components/Manage/Manage';
 import ContextProvider from './Contexts/Context';
-import Commodity from './Components/Commodity/Commodity';
-import Inventory from './Components/Inventory/Inventory';
-import Order from './Components/Order/Order';
+import Commodity from './pages/Commodity';
+import Inventory from './pages/Inventory';
+import Order from './pages/Commodity';
 import Footer from './Layout/Footer';
 import Category from './Components/Home/Category';
 import CardInfo from './Components/Home/CardInfo';
@@ -33,7 +33,7 @@ function App() {
           <Route path='commodity' element={<Commodity />} />
           <Route path='inventory' element={<Inventory />} />
           <Route path='order' element={<Order />} />
-          <Route path='manageform/:manage' element={<Manage />} />
+          {/* <Route path='manageform/:manage' element={<Manage />} /> */}
           <Route />
         </Routes>
         <Footer />
