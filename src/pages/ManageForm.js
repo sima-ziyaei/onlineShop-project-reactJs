@@ -46,7 +46,6 @@ export default function ManageForm() {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          console.log(JSON.stringify(values, null, 2));
           setSubmitting(false);
           setChangeNav(false);
           navigate("/commodity");
