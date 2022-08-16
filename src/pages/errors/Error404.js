@@ -1,5 +1,5 @@
-function NotExist() {
+function Error404() {
     return ( <div className="my-64">Not Found</div> );
 }
 
-export default NotExist;
+export default Error404;

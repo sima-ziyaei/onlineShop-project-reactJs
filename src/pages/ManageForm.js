@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { Context } from "../Contexts/Context";
+import { Context } from "../contexts/Context";
 import { Formik, Field, Form } from "formik";
 import {MdManageAccounts} from 'react-icons/md';
 import {AiFillLock} from 'react-icons/ai'
