@@ -2,8 +2,10 @@ import { NavLink, Link } from 'react-router-dom';
 import '../styles/navbar.css';
 import { useContext } from 'react';
 import { Context } from '../Contexts/Context'
+import {MdShoppingCart} from 'react-icons/md';
+import {MdManageAccounts} from 'react-icons/md';
 
-
+//className='bg-[#7bdeeb] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'
 
 const Navbar = () => {
     const { changeNav, setChangeNav } = useContext(Context);
@@ -13,9 +15,9 @@ const Navbar = () => {
             <nav className='navbar'>
                 <div className='bg-[#ffa5a4] w-[100%] h-16 p-4 flex justify-between'>
                     <NavLink className='w-16 h-16 text-center z-20 p-4 rounded-[50%] bg-[#7bdeeb] text-white border-2 border-white font-bold' to='/'  >لوگو</NavLink>
-                    <div>
-                        <NavLink to='manageform' className='bg-[#7bdeeb] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white' > مدیریت </NavLink>
-                        <NavLink to='cart' className='bg-[#7bdeeb] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'> سبد خرید</NavLink>
+                    <div className='flex'>
+                        <NavLink to='manageform' className='ml-3 text-5xl text-white hover:text-[#7bdeeb]' > <MdManageAccounts /> </NavLink>
+                        <NavLink to='cart' className='text-5xl text-white hover:text-[#7bdeeb]'>  <MdShoppingCart /> </NavLink>
 
                     </div>
                 </div>
