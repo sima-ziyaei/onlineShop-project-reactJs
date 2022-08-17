@@ -34,8 +34,8 @@ const Navbar = () => {
                 <div className='  w-[100%] h-16 p-4 flex justify-between'>
                     <NavLink onClick={() => { setChangeNav(true) }} className='w-16 h-16 text-center z-20 p-4  rounded-[50%] bg-white font-bold text-[#7bdeeb] border-2 border-[#7bdeeb]' to='/'  >لوگو</NavLink>
                     <div className='mt-4  ' >
-                        <NavLink to='inventory' className='bg-[#7bdeeb] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white ' >کالا</NavLink>
-                        <NavLink to='commodity' className='bg-[#7bdeeb] rounded-xl w-[5%] h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'> موجودی </NavLink>
+                        <NavLink to='commodity' className='bg-[#7bdeeb] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white ' >کالا</NavLink>
+                        <NavLink to='inventory' className='bg-[#7bdeeb] rounded-xl w-[5%] h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'> موجودی </NavLink>
                         <NavLink to='order' className='bg-[#7bdeeb] rounded-xl w-[5%] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'> سفارش</NavLink>
                     </div>
                     <div className='mt-4'>
