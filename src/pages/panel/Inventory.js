@@ -41,9 +41,9 @@ function Inventory() {
       <button> ذخیره </button>
       <table>
         <tr>
-          <td>کالا</td>
-          <td> قیمت (تومان) </td>
-          <td>موجودی</td>
+          <th>کالا</th>
+          <th> قیمت (تومان) </th>
+          <th>موجودی</th>
         </tr>
 
         {products.map((el) => {
