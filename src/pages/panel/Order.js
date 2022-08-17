@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 function Order() {
   const [deliveredOrders, setDeliveredOrders] = useState([]);
   const [notDeliveredOrders, setNotDeliveredOrders] = useState([]);
-  const [delivered, setDelivered] = useState(false);
+  const [isDelivered, setDelivered] = useState(false);
   const URL = "http://localhost:3001/";
   const option = {
     year: "numeric",
@@ -47,7 +47,7 @@ function Order() {
           id="delivered"
           name="isDelivered"
           value="delivered"
-          checked={delivered==="delivered"}
+          checked={isDelivered==="delivered"}
           onChange={handleChange}
         />
           <label for="delivered">سفارش های تحویل داده شده</label>
@@ -57,8 +57,9 @@ function Order() {
           id="notDelivered"
           name="isDelivered"
           value="notDelivered"
-          checked={delivered === "notDelivered"}
+          checked={isDelivered === "notDelivered"}
           onChange={handleChange}
+          
         />
           <label for="notDelivered">سفارش های در حال انتظار</label>
       </div>
@@ -70,7 +71,7 @@ function Order() {
           <td>بررسی</td>
         </tr>
 
-        {delivered === "delivered"
+        {isDelivered === "delivered"
           ? deliveredOrders.map((el) => {
               return (
                 <tr>

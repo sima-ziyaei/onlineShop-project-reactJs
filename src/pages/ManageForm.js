@@ -48,7 +48,7 @@ export default function ManageForm() {
         setTimeout(() => {
           setSubmitting(false);
           setChangeNav(false);
-          navigate("/commodity");
+          navigate("/order");
         }, 400);
       }}
     >
