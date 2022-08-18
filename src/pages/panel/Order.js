@@ -153,15 +153,13 @@ function Order() {
           onClick={() => handleNextDeliveredPage()}
           className="border-2 font-bold pr-2 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
         >
-          {" "}
-          <IoArrowRedoSharp />{" "}
+          <IoArrowRedoSharp />
         </button>
         <button
           onClick={() => handlePrevPage()}
           className="border-2 font-bold pr-3 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
         >
-          {" "}
-          <IoArrowUndoSharp />{" "}
+          <IoArrowUndoSharp />
         </button>
       </div>
     </div>

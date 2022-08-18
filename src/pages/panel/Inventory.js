@@ -23,7 +23,7 @@ function Inventory() {
   };
 
   const handleNextPage = () => {
-    if (products.length <= 0) {
+    if (products.length-1 <= 0) {
       setPage(page);
     } else {  
       setPage(page + 1);
