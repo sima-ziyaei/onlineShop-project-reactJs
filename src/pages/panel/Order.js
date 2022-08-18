@@ -46,7 +46,7 @@ function Order() {
   };
 
   const handleNextDeliveredPage = () => {
-    if (deliveredOrders.length <= 0) {
+    if (deliveredOrders.length-2 <= 0) {
       setPage(page);
     } else {
       setPage(page + 1);
@@ -54,7 +54,7 @@ function Order() {
   };
 
   const handleNextNotDeliveredPage = () => {
-    if (notDeliveredOrders.length <= 0) {
+    if (notDeliveredOrders.length-1 <= 0) {
       setPage(page);
     } else {
       setPage(page + 1);
@@ -70,7 +70,7 @@ function Order() {
   };
 
   return (
-    <div className="my-64 flex flex-col justify-center items-center">
+    <div className="mt-64 flex flex-col justify-center items-center">
       <div className="flex w-[80%] justify-between">
         <p className="text-[#ffbd07] font-extrabold text-3xl border-b-4 border-[#ffbd07]"> مدیریت سفارش ها </p>
         <div className="flex ">
@@ -148,9 +148,25 @@ function Order() {
               );
             })}
       </table>
+      {isDelivered === "delivered"?
       <div className="my-20 w-[15%] flex justify-between">
+      <button
+        onClick={() => handleNextDeliveredPage()}
+        className="border-2 font-bold pr-2 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
+      >
+        <IoArrowRedoSharp />
+      </button>
+      <button
+        onClick={() => handlePrevPage()}
+        className="border-2 font-bold pr-3 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
+      >
+        <IoArrowUndoSharp />
+      </button>
+    </div>
+    :
+    <div className="my-20 w-[15%] flex justify-between">
         <button
-          onClick={() => handleNextDeliveredPage()}
+          onClick={() => handleNextNotDeliveredPage()}
           className="border-2 font-bold pr-2 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
         >
           <IoArrowRedoSharp />
@@ -162,6 +178,8 @@ function Order() {
           <IoArrowUndoSharp />
         </button>
       </div>
+      }
+      
     </div>
   );
 }
