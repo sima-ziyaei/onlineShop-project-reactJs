@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { Context } from "../contexts/Context";
+
+
 import { Formik, Field, Form } from "formik";
 import { MdManageAccounts } from "react-icons/md";
 import {AiFillLock} from 'react-icons/ai'
@@ -35,9 +35,7 @@ export default function ManageForm() {
     return error;
   };
 
-  const { setChangeNav } = useContext(Context);
   const navigate = useNavigate();
-
   return (
     <Formik
       initialValues={{
@@ -47,7 +45,6 @@ export default function ManageForm() {
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           setSubmitting(false);
-          setChangeNav(false);
           navigate("/order");
         }, 400);
       }}
