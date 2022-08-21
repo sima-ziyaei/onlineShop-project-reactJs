@@ -1,17 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory, setProduct } from "../../redux/productSlice";
+import { setCategory, setProduct, setSubCategory } from "../../redux/productSlice";
 import {IoArrowRedoSharp} from 'react-icons/io5';
 import {IoArrowUndoSharp} from 'react-icons/io5';
+import AddCommodity from "../../Components/Commodity/AddCommodity";
 
 function Commodity() {
   // const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.productItem);
   const category = useSelector((state) => state.product.categoryItem);
-
-  const [subCategory, setSubCategory] = useState([]);
+  const subCategory = useSelector((state) => state.product.subCategoryItem);
+  // const [subCategory, setSubCategory] = useState([]);
   const [page, setPage] = useState(1);
   const URL = "http://localhost:3001/";
 
@@ -37,7 +38,7 @@ function Commodity() {
     axios
       .get(`${URL}subcategory`)
       .then((res) => {
-        setSubCategory(res.data);
+        dispatch(setSubCategory(res.data));
       })
       .catch((err) => console.log("error:" + err));
   };
@@ -64,9 +65,10 @@ function Commodity() {
         <p className="text-[#ffbd07] font-extrabold text-3xl border-b-4 border-[#ffbd07]">
           مدیریت کالا ها{" "}
         </p>
-        <button className="border-2 font-bold p-3 rounded-2xl border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white ">
+        {/* <button className="border-2 font-bold p-3 rounded-2xl border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white ">
           افزودن کالا{" "}
-        </button>
+        </button> */}
+        < AddCommodity />
       </div>
       <table className="border-2 border-[#ffa5a4] mt-20 w-[80%] text-start">
         <tr className=" bg-[#ffa5a4] h-10">
@@ -80,7 +82,7 @@ function Commodity() {
         {products.map((el) => {
           return (
             <tr key={el.id} className="  odd:bg-[#7bdeeb]">
-              <td> عکس </td>
+              <td><img src={`http://localhost:3001/files/${el.thumbnail}`} className='w-8 h-8 rounded-full'/>  </td>
               <td> {el.name} </td>
 
               {category.map((item) => {
