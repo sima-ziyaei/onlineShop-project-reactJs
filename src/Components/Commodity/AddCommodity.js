@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import Modal from "react-modal";
-import {  useSelector } from "react-redux";
-const URL = "http://localhost:3001/";
+import { useSelector } from "react-redux";
+import  ClassicEditor  from "@ckeditor/ckeditor5-build-classic";
+import  CKEditor  from "@ckeditor/ckeditor5-react";
 
 function AddCommodity() {
+  const URL = "http://localhost:3001/";
   const category = useSelector((state) => state.product.categoryItem);
   const subCategory = useSelector((state) => state.product.subCategoryItem);
   const [formData, setFormData] = useState({
@@ -28,11 +30,12 @@ function AddCommodity() {
     setModalIsOpen(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(formData);
-    axios.post(`${URL}products`, formData)
-        .then(response =>  console.log(response.data.id) );
+    await axios.post(`http://localhost:3001/products`, formData)
+        .then(response =>  console.log(response.data.id) )
+        .catch((err) => alert(err.message));
     // setModalIsOpen(false);
   };
 
@@ -101,15 +104,27 @@ function AddCommodity() {
           >
             {category.map((item) => {
               if (formData.category == item.name) {
+                return(
                   subCategory.map((el) => {
                     if (item.id == el.category) {
                       return <option value={el.name}> {el.name} </option>;
                     }
-                  });  
+                  })  )
               }
             })}
           </select>
+          توضیحات
+            {/* <CKEditor
+            editor={ClassicEditor}
+            data={formData.information}
+            onChange={(event, editor)=>{
+              const data= editor.getData()
+              setFormData((prev) => ({ ...prev, information: data }));
+            }}
+            /> */}
+          {/* <textarea className="w-[100%] h-24 border border-violet-600"/> */}
           <button onClick={handleSubmit}>submit</button>
+          <button onClick={()=>setModalIsOpen(false)}>close</button>
         </form>
       </Modal>
     </>
