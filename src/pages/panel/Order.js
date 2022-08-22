@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import { IoArrowUndoSharp } from "react-icons/io5";
+import CheckOrder from "../../Components/Order/CheckOrder";
 
 function Order() {
   const [allOrders, setAllOrders] = useState([]);
@@ -159,7 +160,7 @@ function Order() {
                   <td>
                     {new Date(el.expectAt).toLocaleString("fa-IR", option)}
                   </td>
-                  <td>بررسی سفارش</td>
+                  <td> <CheckOrder id={el.id} /> </td>
                 </tr>
               );
             })
@@ -174,7 +175,7 @@ function Order() {
                   <td>
                     {new Date(el.expectAt).toLocaleString("fa-IR", option)}
                   </td>
-                  <td>بررسی سفارش</td>
+                  <td> <CheckOrder id={el.id} /> </td>
                 </tr>
               );
             }): 
@@ -188,7 +189,7 @@ function Order() {
                   <td>
                     {new Date(el.expectAt).toLocaleString("fa-IR", option)}
                   </td>
-                  <td>بررسی سفارش</td>
+                  <td> <CheckOrder id={el.id} /> </td>
                 </tr>
               );
             })
