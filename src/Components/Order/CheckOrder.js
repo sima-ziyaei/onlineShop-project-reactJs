@@ -2,9 +2,15 @@ import axios from "axios";
 import { useState } from "react";
 import Modal from "react-modal";
 
-function CheckOrder({id}) {
+function CheckOrder({ id }) {
+  const URL = "http://localhost:3001/";
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct]=useState({})
+  const [selectedProduct, setSelectedProduct] = useState([]);
+  const option = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  };
 
   const check = () => {
     axios
@@ -17,12 +23,64 @@ function CheckOrder({id}) {
     setModalIsOpen(true);
   };
 
+  const deliverOrder = async() => {
+ 
+    axios
+      .patch(`${URL}orders/${id}`,{delivered : "true",createdAt: new Date().getTime()})
+      .then((response) => {check()})
+      .catch((err) => alert(err.message));
+  };
+
+  
+
   return (
     <>
-      <button onClick={check} className='border border-y-blue-900'> بررسی سفارش </button>
+      <button onClick={check} className="border border-y-blue-900">
+        {" "}
+        بررسی سفارش{" "}
+      </button>
       <Modal isOpen={modalIsOpen}>
-        <div>{`order:${selectedProduct.username} ${selectedProduct.lastname}`}</div>
-        <button onClick={()=>setModalIsOpen(false)}> close </button>
+        {selectedProduct.map((el) => {
+          return (
+            <>
+              <div>{` نام: ${el.username} ${el.lastname}`}</div>
+              <div> {` آدرس: ${el.address}`} </div>
+              <div> {` شماره تلفن: ${el.phone}`} </div>
+              <div>{` زمان سفارش: ${new Date(el.expectAt).toLocaleString(
+                "fa-IR",
+                option
+              )}`}</div>
+              <table>
+                <tr>
+                  <th>کالا</th>
+                  <th>قیمت</th>
+                  <th>تعداد</th>
+                </tr>
+                {el.products.map((item) => {
+                  return (
+                    <tr>
+                      <td> {item.name} </td>
+                      <td> {item.price} </td>
+                      <td> {item.count} </td>
+                    </tr>
+                  );
+                })}
+              </table>
+              {el.delivered === "true" ? (
+                <div>{` زمان تحویل:  ${new Date(el.createdAt).toLocaleString(
+                  "fa-IR",
+                  option
+                )}`}</div>
+              ) : (
+                <button onClick={deliverOrder}> تحویل سفارش </button>
+              )}
+            </>
+          );
+        })}
+        <button onClick={() =>{
+            setModalIsOpen(false)
+            setSelectedProduct([])
+        } }> close </button>
       </Modal>
     </>
   );

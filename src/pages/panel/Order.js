@@ -55,7 +55,7 @@ function Order() {
   };
 
   const handleNextDeliveredPage = () => {
-    if (deliveredOrders.length - 2 <= 0) {
+    if (deliveredOrders.length - 1 <= 0) {
       setPage(page);
     } else {
       setPage(page + 1);
