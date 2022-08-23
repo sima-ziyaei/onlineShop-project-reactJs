@@ -3,7 +3,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import  ClassicEditor  from "@ckeditor/ckeditor5-build-classic";
-import  CKEditor  from "@ckeditor/ckeditor5-react";
+import  {CKEditor}  from "@ckeditor/ckeditor5-react";
 
 function AddCommodity() {
   const URL = "http://localhost:3001/";
@@ -114,14 +114,14 @@ function AddCommodity() {
             })}
           </select>
           توضیحات
-            {/* <CKEditor
+            <CKEditor
             editor={ClassicEditor}
             data={formData.information}
             onChange={(event, editor)=>{
               const data= editor.getData()
               setFormData((prev) => ({ ...prev, information: data }));
             }}
-            /> */}
+            /> 
           {/* <textarea className="w-[100%] h-24 border border-violet-600"/> */}
           <button onClick={handleSubmit}>submit</button>
           <button onClick={()=>setModalIsOpen(false)}>close</button>
