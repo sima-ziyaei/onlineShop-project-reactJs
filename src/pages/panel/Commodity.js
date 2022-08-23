@@ -5,6 +5,7 @@ import { setCategory, setProduct, setSubCategory } from "../../redux/productSlic
 import {IoArrowRedoSharp} from 'react-icons/io5';
 import {IoArrowUndoSharp} from 'react-icons/io5';
 import AddCommodity from "../../Components/Commodity/AddCommodity";
+import DeleteCommodity from "../../Components/Commodity/DeleteCommodity";
 
 function Commodity() {
   // const [products, setProducts] = useState([]);
@@ -104,7 +105,7 @@ function Commodity() {
               })}
 
               <td> ویرایش </td>
-              <td> حذف </td>
+              <td className="text-center"> <DeleteCommodity id={el.id} /> </td>
             </tr>
           );
         })}
