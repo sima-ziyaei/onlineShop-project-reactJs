@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {IoArrowRedoSharp} from 'react-icons/io5';
-import {IoArrowUndoSharp} from 'react-icons/io5';
 import EditInventory from '../../Components/Inventory/EditInventory'
 import SaveEdit from "../../Components/Inventory/SaveEdit";
+import Pagination from "../../Components/Pagination";
 
 
 function Inventory() {
   const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [total, setTotal]= useState('');
   const URL = "http://localhost:3001/";
 
   const persianNumber = (x) => {
@@ -17,33 +17,18 @@ function Inventory() {
 
   useEffect(() => {
    getProducts();
-  }, [page]);
+  }, []);
 
-  const getProducts = () => {
-    axios
-      .get(`${URL}products?_page=${page}&_limit=5`)
+  const getProducts =  async(currentPage) => {
+    await axios
+      .get(`${URL}products?_page=${currentPage}&_limit=5`)
       .then((res) => {
         setProducts(res.data);
+        setTotal(res.headers.get('x-total-count')) 
       })
       .catch((err) => console.log("error:" + err));
   };
 
-  const handleNextPage = () => {
-    if (products.length-1 <= 0) {
-      setPage(page);
-    } else {  
-      setPage(page + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-
-    if (page <= 1) {
-      setPage(page);
-    } else {
-      setPage(page - 1);
-    }
-  };
 
   return (
     <div className="mt-64 flex flex-col justify-center items-center">
@@ -68,10 +53,7 @@ function Inventory() {
         })}
       </table>
 
-      <div className="my-20 w-[15%] flex justify-between">
-        <button onClick={() => handleNextPage()} className="border-2 font-bold pr-2 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "> <IoArrowRedoSharp /> </button>
-        <button onClick={() => handlePrevPage()} className="border-2 font-bold pr-3 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "> <IoArrowUndoSharp /> </button>
-      </div>
+     <Pagination currentPage={currentPage} total={total} getProducts={getProducts}/>
     </div>
   );
 }

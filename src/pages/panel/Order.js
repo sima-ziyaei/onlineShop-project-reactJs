@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import { IoArrowUndoSharp } from "react-icons/io5";
 import CheckOrder from "../../Components/Order/CheckOrder";
+import Pagination from "../../Components/Pagination";
 
 function Order() {
   const [allOrders, setAllOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
   const [notDeliveredOrders, setNotDeliveredOrders] = useState([]);
   const [isDelivered, setDelivered] = useState('all');
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [total, setTotal]= useState('');
   const URL = "http://localhost:3001/";
   const option = {
     year: "numeric",
@@ -18,69 +20,46 @@ function Order() {
   };
 
   useEffect(() => {
-    getDeliveredOrders();
-    getNotDeliveredOrders();
+   
     getAllOrders();
-  }, [page]);
+  }, []);
 
   const persianNumber = (x) => {
     return x.toLocaleString("fa-IR");
 }
 
-  const getAllOrders = () => {
-    axios
-      .get(`${URL}orders?_page=${page}&_limit=3`)
+  const getAllOrders = async(currentPage) => {
+   await axios
+      .get(`${URL}orders?_page=${currentPage}&_limit=3`)
       .then((res) => {
         setAllOrders(res.data);
+        setTotal(res.headers.get('x-total-count')) 
       })
       .catch((err) => console.log(err));
-  };
 
-  const getDeliveredOrders = () => {
-    axios
-      .get(`${URL}orders?delivered=true&_page=${page}&_limit=2`)
+     await axios
+      .get(`${URL}orders?delivered=true&_page=${currentPage}&_limit=2`)
       .then((res) => {
         setDeliveredOrders(res.data);
+        setTotal(res.headers.get('x-total-count')) 
+      })
+      .catch((err) => console.log(err));
+
+      await axios
+      .get(`${URL}orders?delivered=false&_page=${currentPage}&_limit=2`)
+      .then((res) => {
+        setNotDeliveredOrders(res.data);
+        setTotal(res.headers.get('x-total-count')) 
       })
       .catch((err) => console.log(err));
   };
 
-  const getNotDeliveredOrders = () => {
-    axios
-      .get(`${URL}orders?delivered=false&_page=${page}&_limit=2`)
-      .then((res) => {
-        setNotDeliveredOrders(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
 
   const handleChange = (event) => {
     setDelivered(event.target.value);
   };
 
-  const handleNextDeliveredPage = () => {
-    if (deliveredOrders.length - 1 <= 0) {
-      setPage(page);
-    } else {
-      setPage(page + 1);
-    }
-  };
-
-  const handleNextNotDeliveredPage = () => {
-    if (notDeliveredOrders.length - 1 <= 0) {
-      setPage(page);
-    } else {
-      setPage(page + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (page <= 1) {
-      setPage(page);
-    } else {
-      setPage(page - 1);
-    }
-  };
+ 
 
   return (
     <div className="mt-64 flex flex-col justify-center items-center">
@@ -199,37 +178,7 @@ function Order() {
             })
             }
       </table>
-      {isDelivered === "delivered" ? (
-        <div className="my-20 w-[15%] flex justify-between">
-          <button
-            onClick={() => handleNextDeliveredPage()}
-            className="border-2 font-bold pr-2 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
-          >
-            <IoArrowRedoSharp />
-          </button>
-          <button
-            onClick={() => handlePrevPage()}
-            className="border-2 font-bold pr-3 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
-          >
-            <IoArrowUndoSharp />
-          </button>
-        </div>
-      ) : (
-        <div className="my-20 w-[15%] flex justify-between">
-          <button
-            onClick={() => handleNextNotDeliveredPage()}
-            className="border-2 font-bold pr-2 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
-          >
-            <IoArrowRedoSharp />
-          </button>
-          <button
-            onClick={() => handlePrevPage()}
-            className="border-2 font-bold pr-3 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "
-          >
-            <IoArrowUndoSharp />
-          </button>
-        </div>
-      )}
+      <Pagination currentPage={currentPage} total={total} getProducts={getAllOrders}/>
     </div>
   );
 }
