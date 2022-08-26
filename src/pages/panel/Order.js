@@ -1,7 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { IoArrowRedoSharp } from "react-icons/io5";
-import { IoArrowUndoSharp } from "react-icons/io5";
 import CheckOrder from "../../Components/Order/CheckOrder";
 import Pagination from "../../Components/Pagination";
 
@@ -22,7 +20,7 @@ function Order() {
   useEffect(() => {
    
     getAllOrders();
-  }, []);
+  }, [isDelivered]);
 
   const persianNumber = (x) => {
     return x.toLocaleString("fa-IR");
@@ -33,7 +31,7 @@ function Order() {
       .get(`${URL}orders?_page=${currentPage}&_limit=3`)
       .then((res) => {
         setAllOrders(res.data);
-        setTotal(res.headers.get('x-total-count')) 
+        setTotal(res.headers['x-total-count']) 
       })
       .catch((err) => console.log(err));
 
@@ -41,7 +39,7 @@ function Order() {
       .get(`${URL}orders?delivered=true&_page=${currentPage}&_limit=2`)
       .then((res) => {
         setDeliveredOrders(res.data);
-        setTotal(res.headers.get('x-total-count')) 
+        setTotal(res.headers['x-total-count']) 
       })
       .catch((err) => console.log(err));
 
@@ -49,7 +47,7 @@ function Order() {
       .get(`${URL}orders?delivered=false&_page=${currentPage}&_limit=2`)
       .then((res) => {
         setNotDeliveredOrders(res.data);
-        setTotal(res.headers.get('x-total-count')) 
+        setTotal(res.headers['x-total-count']) 
       })
       .catch((err) => console.log(err));
   };

@@ -1,11 +1,9 @@
 import ReactPaginate from "react-paginate";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import { IoArrowUndoSharp } from "react-icons/io5";
-import { useState } from "react";
 
 function Pagination({ currentPage, getProducts, total }) {
 
-    
 
   const handlePageClick = async(data) => {
     currentPage = data.selected + 1;
@@ -18,8 +16,8 @@ function Pagination({ currentPage, getProducts, total }) {
         previousLabel={<IoArrowUndoSharp />}
         nextLabel={<IoArrowRedoSharp />}
         breakLabel={"..."}
-        pageCount={6}
-        // pageCount={Math.ceil(total/5)}
+        // pageCount={6}
+        pageCount={Math.ceil(total/5)}
         marginPagesDisplayed={2}
         pageRangeDisplayed={2}
         onPageChange={handlePageClick}

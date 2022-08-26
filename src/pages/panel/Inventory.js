@@ -24,7 +24,7 @@ function Inventory() {
       .get(`${URL}products?_page=${currentPage}&_limit=5`)
       .then((res) => {
         setProducts(res.data);
-        setTotal(res.headers.get('x-total-count')) 
+        setTotal(res.headers['x-total-count']) 
       })
       .catch((err) => console.log("error:" + err));
   };
