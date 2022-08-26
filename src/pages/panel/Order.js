@@ -23,6 +23,10 @@ function Order() {
     getAllOrders();
   }, [page]);
 
+  const persianNumber = (x) => {
+    return x.toLocaleString("fa-IR");
+}
+
   const getAllOrders = () => {
     axios
       .get(`${URL}orders?_page=${page}&_limit=3`)
@@ -185,7 +189,7 @@ function Order() {
                   <td>
                     {el.username} {el.lastname}
                   </td>
-                  <td>{el.prices}</td>
+                  <td>{persianNumber(el.prices)}</td>
                   <td>
                     {new Date(el.expectAt).toLocaleString("fa-IR", option)}
                   </td>

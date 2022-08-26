@@ -6,6 +6,7 @@ import {IoArrowRedoSharp} from 'react-icons/io5';
 import {IoArrowUndoSharp} from 'react-icons/io5';
 import AddCommodity from "../../Components/Commodity/AddCommodity";
 import DeleteCommodity from "../../Components/Commodity/DeleteCommodity";
+import EditCommodity from "../../Components/Commodity/EditCommodity";
 
 function Commodity() {
   // const [products, setProducts] = useState([]);
@@ -72,12 +73,13 @@ function Commodity() {
         < AddCommodity />
       </div>
       <table className="border-2 border-[#ffa5a4] mt-20 w-[80%] text-start">
+        <tbody>
         <tr className=" bg-[#ffa5a4] h-10">
-          <th className="text-start"> تصویر </th>
-          <th className="text-start"> نام کالا </th>
-          <th className="text-start"> دسته بندی </th>
-          <th className="text-start"> ویرایش </th>
-          <th className="text-start"> حذف </th>
+          <th className="text-center"> تصویر </th>
+          <th className="text-center"> نام کالا </th>
+          <th className="text-center"> دسته بندی </th>
+          <th className="text-center"> ویرایش </th>
+          <th className="text-center"> حذف </th>
         </tr>
 
         {products.map((el) => {
@@ -104,11 +106,12 @@ function Commodity() {
                 }
               })}
 
-              <td> ویرایش </td>
+              <td className="text-center"> <EditCommodity id={el.id}/> </td>
               <td className="text-center"> <DeleteCommodity id={el.id} /> </td>
             </tr>
           );
         })}
+        </tbody>
       </table>
       <div className="my-20 w-[15%] flex justify-between">
         <button onClick={() => handleNextPage()} className="border-2 font-bold pr-2 text-2xl w-12 h-12  rounded-full border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "> <IoArrowRedoSharp /> </button>

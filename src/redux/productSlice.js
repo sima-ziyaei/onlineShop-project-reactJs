@@ -5,7 +5,9 @@ const slice = createSlice({
   initialState: {
     productItem: [],
     categoryItem: [],
-    subCategoryItem:[]
+    subCategoryItem:[],
+    newPrice:'',
+    newStock:''
   },
   reducers: {
     setProduct: (state, action) => {
@@ -17,7 +19,13 @@ const slice = createSlice({
     setSubCategory: (state, action) => {
       state.subCategoryItem = action.payload;
     },
+    setNewPrice: (state, action) => {
+      state.newPrice = action.payload;
+    },
+    setNewStock: (state, action) => {
+      state.newStock = action.payload;
+    },
   },
 });
-export const { setProduct, setCategory, setSubCategory } = slice.actions;
+export const { setProduct, setCategory, setSubCategory, setNewPrice, setNewStock } = slice.actions;
 export default slice.reducer;
