@@ -37,6 +37,10 @@ function Commodity() {
       })
       .catch((err) => console.log("error:" + err));
 
+
+
+      
+
     axios
       .get(`${URL}category`)
       .then((res) => {
@@ -77,18 +81,18 @@ function Commodity() {
           {products.map((el) => {
             return (
               <tr key={el.id} className="  odd:bg-[#7bdeeb]">
-                <td>
+                <td className=" flex justify-center">
                   <img
                     src={`http://localhost:3001/files/${el.thumbnail}`}
                     className="w-8 h-8 rounded-full"
-                  />{" "}
+                  />
                 </td>
-                <td> {el.name} </td>
+                <td className="text-center"> {el.name} </td>
 
                 {category.map((item) => {
                   if (el.category == item.id) {
                     return (
-                      <td>
+                      <td className="text-center">
                         {subCategory.map((sub) => {
                           if (el.subcategory == sub.id) {
                             return (
@@ -104,12 +108,12 @@ function Commodity() {
                 })}
 
                 <td className="text-center">
-                  {" "}
-                  <EditCommodity id={el.id} />{" "}
+                  
+                  <EditCommodity id={el.id} />
                 </td>
                 <td className="text-center">
-                  {" "}
-                  <DeleteCommodity id={el.id} />{" "}
+                  
+                  <DeleteCommodity id={el.id} />
                 </td>
               </tr>
             );

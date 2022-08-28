@@ -37,7 +37,7 @@ function EditCommodity({ id }) {
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    console.log(value);
+    console.log(selectedProduct);
     // setSelectedProduct((prev) => [{ ...prev, [name]: value }]);
   };
 
@@ -78,11 +78,11 @@ function EditCommodity({ id }) {
             className="border border-violet-400"
           >
             {category.map((item) => {
-              return <option value={item.name}  selected={item.name=== el.category ? true : false}> {item.name} </option>;
+              return <option value={item.name}  selected={item.id=== el.category ? true : false}> {item.name} </option>;
             })}
           </select>
 
-          {/* <select
+           <select
             name="subCategory"
             onChange={handleChangeInput}
             
@@ -98,7 +98,7 @@ function EditCommodity({ id }) {
                   })  )
               }
             })}
-          </select> */}
+          </select> 
 
               <CKEditor
                 editor={ClassicEditor}

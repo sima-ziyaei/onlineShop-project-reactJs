@@ -12,7 +12,12 @@ function EditInventory({ price, stock }) {
   // const newPrice = useSelector((state) => state.product.newPrice);
   // const newStock = useSelector((state) => state.product.newStock);
 
+  const keyDownHandler =()=>{
+    setDisablePriceButton(true)
+    setDisableStockButton(true)
+  }
 
+  document.addEventListener('keydown', keyDownHandler);
 
     const handleChangePrice=(e)=>{
         const { value}=e.target;
@@ -28,11 +33,11 @@ function EditInventory({ price, stock }) {
   
   return (
     <>
-      <td onClick={() => setDisablePriceButton(false)} className="cursor-pointer">
-        <input value={newPrice} disabled={disablePriceButton} onChange={handleChangePrice} className={ disablePriceButton ? " cursor-pointer  " : " border-2 border-black "}/>
+      <td onClick={() => setDisablePriceButton(false)} className="cursor-pointer text-center">
+        <input value={newPrice} disabled={disablePriceButton} onChange={handleChangePrice} className={ disablePriceButton ? " cursor-pointer text-center " : "text-center border-2 border-black "}/>
       </td>
-      <td onClick={() => setDisableStockButton(false) } className="cursor-pointer">
-        <input value={newStock} disabled={disableStockButton} onChange={handleChangeStock} className={ disableStockButton ? " cursor-pointer  " : " border-2 border-black "}/>
+      <td onClick={() => setDisableStockButton(false) } className="cursor-pointer text-center">
+        <input value={newStock} disabled={disableStockButton} onChange={handleChangeStock} className={ disableStockButton ? " cursor-pointer  text-center" : "text-center border-2 border-black "}/>
       </td>
     </>
   );

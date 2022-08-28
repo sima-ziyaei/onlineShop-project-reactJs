@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "shabnam";
-  src: local("font") url("./assets/font/Shabnam.ttf");
+  font-family: "Iran Sans";
+  src: local("font") url("./assets/font/Iranian\ Sans.ttf");
 }
 
 body {
   margin: 0;
-  font-family:"shabnam" ;
+  font-family:"Iran Sans" ;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;

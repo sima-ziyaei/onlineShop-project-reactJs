@@ -28,7 +28,7 @@ function Order() {
 
   const getAllOrders = async(currentPage) => {
    await axios
-      .get(`${URL}orders?_page=${currentPage}&_limit=3`)
+      .get(`${URL}orders?_page=${currentPage}&_limit=5`)
       .then((res) => {
         setAllOrders(res.data);
         setTotal(res.headers['x-total-count']) 
@@ -36,7 +36,7 @@ function Order() {
       .catch((err) => console.log(err));
 
      await axios
-      .get(`${URL}orders?delivered=true&_page=${currentPage}&_limit=2`)
+      .get(`${URL}orders?delivered=true&_page=${currentPage}&_limit=5`)
       .then((res) => {
         setDeliveredOrders(res.data);
         setTotal(res.headers['x-total-count']) 
@@ -44,7 +44,7 @@ function Order() {
       .catch((err) => console.log(err));
 
       await axios
-      .get(`${URL}orders?delivered=false&_page=${currentPage}&_limit=2`)
+      .get(`${URL}orders?delivered=false&_page=${currentPage}&_limit=5`)
       .then((res) => {
         setNotDeliveredOrders(res.data);
         setTotal(res.headers['x-total-count']) 
@@ -122,26 +122,26 @@ function Order() {
           </div>
         </div>
       </div>
-      <table className="border-2 border-[#ffa5a4] mt-24 w-[80%] text-start">
+      <table className="border-2 border-[#ffa5a4] mt-24 w-[80%] ">
         <tr className=" bg-[#ffa5a4] h-10">
-          <th className="text-start">نام کاربر</th>
-          <th className="text-start">مجموع مبلغ</th>
-          <th className="text-start">زمان ثبت سفارش</th>
-          <th className="text-start">بررسی</th>
+          <th className="text-center">نام کاربر</th>
+          <th className="text-center">مجموع مبلغ</th>
+          <th className="text-center">زمان ثبت سفارش</th>
+          <th className="text-center">بررسی</th>
         </tr>
 
         {isDelivered === "delivered"
           ? deliveredOrders.map((el) => {
               return (
                 <tr key={el.id} className="  odd:bg-[#7bdeeb]">
-                  <td>
+                  <td  className="text-center">
                     {el.username} {el.lastname}
                   </td>
-                  <td>{el.prices}</td>
-                  <td>
+                  <td  className="text-center">{persianNumber(el.prices)}</td>
+                  <td  className="text-center">
                     {new Date(el.expectAt).toLocaleString("fa-IR", option)}
                   </td>
-                  <td> <CheckOrder id={el.id} /> </td>
+                  <td className="text-center"> <CheckOrder id={el.id} /> </td>
                 </tr>
               );
             })
@@ -149,28 +149,28 @@ function Order() {
           ? notDeliveredOrders.map((el) => {
               return (
                 <tr key={el.id} className=" odd:bg-[#7bdeeb]">
-                  <td>
+                  <td  className="text-center">
                     {el.username} {el.lastname}
-                  </td>
-                  <td>{el.prices}</td>
-                  <td>
+                  </td >
+                  <td  className="text-center">{persianNumber(el.prices)}</td>
+                  <td  className="text-center">
                     {new Date(el.expectAt).toLocaleString("fa-IR", option)}
                   </td>
-                  <td> <CheckOrder id={el.id} /> </td>
+                  <td className="text-center"> <CheckOrder id={el.id} /> </td>
                 </tr>
               );
             }): 
             allOrders.map((el) => {
               return (
                 <tr key={el.id} className=" odd:bg-[#7bdeeb]">
-                  <td>
+                  <td className="text-center">
                     {el.username} {el.lastname}
                   </td>
-                  <td>{persianNumber(el.prices)}</td>
-                  <td>
+                  <td className="text-center">{persianNumber(el.prices)}</td>
+                  <td className="text-center">
                     {new Date(el.expectAt).toLocaleString("fa-IR", option)}
                   </td>
-                  <td> <CheckOrder id={el.id} /> </td>
+                  <td className="text-center"> <CheckOrder id={el.id} /> </td>
                 </tr>
               );
             })

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import Modal from "react-modal";
+import { BsCalendar2CheckFill, BsX } from "react-icons/bs";
 
 function CheckOrder({ id }) {
   const URL = "http://localhost:3001/";
@@ -23,66 +24,76 @@ function CheckOrder({ id }) {
     setModalIsOpen(true);
   };
 
-  const deliverOrder = async() => {
- 
+  const deliverOrder = async () => {
     axios
-      .patch(`${URL}orders/${id}`,{delivered : "true",createdAt: new Date().getTime()})
-      .then((response) => {check()})
+      .patch(`${URL}orders/${id}`, {
+        delivered: "true",
+        createdAt: new Date().getTime(),
+      })
+      .then((response) => {
+        check();
+      })
       .catch((err) => alert(err.message));
   };
 
-  
-
   return (
-    <>
-      <button onClick={check} className="border border-y-blue-900">
-        {" "}
-        بررسی سفارش{" "}
+    <div className="flex items-center justify-center w-[100%]">
+      <button onClick={check} className="text-black text-center ">
+        <BsCalendar2CheckFill />
       </button>
-      <Modal isOpen={modalIsOpen}>
+      <Modal isOpen={modalIsOpen} className="w-[50%] h-[80%] border bg-white">
         {selectedProduct.map((el) => {
           return (
-            <>
-              <div>{` نام: ${el.username} ${el.lastname}`}</div>
-              <div> {` آدرس: ${el.address}`} </div>
-              <div> {` شماره تلفن: ${el.phone}`} </div>
-              <div>{` زمان سفارش: ${new Date(el.expectAt).toLocaleString(
-                "fa-IR",
-                option
-              )}`}</div>
-              <table>
-                <tr>
-                  <th>کالا</th>
-                  <th>قیمت</th>
-                  <th>تعداد</th>
+            <div className="m-3">
+              <div className="flex justify-between m-2 mr-0">
+                <span className="font-extrabold text-2xl border-b-2 border-[#ffbd07] text-[#ffbd07]"> اطلاعات سفارش </span>
+                <span
+                  onClick={() => {
+                    setModalIsOpen(false);
+                    setSelectedProduct([]);
+                  }}
+                  className='cursor-pointer text-2xl'
+                >
+                  <BsX />
+                </span>
+              </div>
+              <div className=" my-2">{` نام: ${el.username} ${el.lastname}`}</div>
+              <div className=" my-2"> {` آدرس: ${el.address}`} </div>
+              <div className=" my-2"> {` شماره تلفن: ${el.phone}`} </div>
+              <div className=" my-2">{` زمان سفارش: ${new Date(
+                el.expectAt
+              ).toLocaleString("fa-IR", option)}`}</div>
+              <table className="w-[90%] my-4 mr-[5%]">
+                <tr className="text-center border bg-[#ffa5a4]">
+                  <th className="text-center">کالا</th>
+                  <th className="text-center">قیمت</th>
+                  <th className="text-center">تعداد</th>
                 </tr>
                 {el.products.map((item) => {
                   return (
-                    <tr>
-                      <td> {item.name} </td>
-                      <td> {item.price} </td>
-                      <td> {item.count} </td>
+                    <tr className="odd:bg-[#7bdeeb]">
+                      <td className="text-center"> {item.name} </td>
+                      <td className="text-center"> {item.price} </td>
+                      <td className="text-center"> {item.count} </td>
                     </tr>
                   );
                 })}
               </table>
               {el.delivered === "true" ? (
-                <div>{` زمان تحویل:  ${new Date(el.createdAt).toLocaleString(
-                  "fa-IR",
-                  option
-                )}`}</div>
+                <div className=" my-2">{` زمان تحویل:  ${new Date(
+                  el.createdAt
+                ).toLocaleString("fa-IR", option)}`}</div>
               ) : (
-                <button onClick={deliverOrder}> تحویل سفارش </button>
+                <button onClick={deliverOrder} className=" my-2 font-bold  border-2 border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white p-3 rounded-xl">
+                 
+                  تحویل سفارش
+                </button>
               )}
-            </>
+            </div>
           );
         })}
-        <button onClick={() =>{
-            setModalIsOpen(false)
-            setSelectedProduct([])
-        } }> close </button>
       </Modal>
-    </>
+    </div>
   );
 }
 

@@ -37,15 +37,15 @@ function Inventory() {
       <SaveEdit /> </div>
       <table className="border-2 border-[#ffa5a4] mt-20 w-[80%] text-start">
         <tr className=" bg-[#ffa5a4] h-10">
-          <th className="text-start">کالا</th>
-          <th className="text-start"> قیمت (تومان) </th>
-          <th className="text-start">موجودی</th>
+          <th className="text-center">کالا</th>
+          <th className="text-center"> قیمت (تومان) </th>
+          <th className="text-center">موجودی</th>
         </tr>
 
         {products.map((el) => {
           return (
             <tr key={el.id} className="  odd:bg-[#7bdeeb]">
-              <td> {el.name} </td>
+              <td className="text-center"> {el.name} </td>
               <EditInventory price={persianNumber(+(el.Price))} stock={persianNumber(+(el.stock))} />
               
             </tr>

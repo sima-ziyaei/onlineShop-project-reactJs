@@ -18,8 +18,8 @@ function Pagination({ currentPage, getProducts, total }) {
         breakLabel={"..."}
         // pageCount={6}
         pageCount={Math.ceil(total/5)}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={1}
         onPageChange={handlePageClick}
         containerClassName={"flex flex-row-reverse mt-24 mb-36"}
         pageClassName={
@@ -34,7 +34,7 @@ function Pagination({ currentPage, getProducts, total }) {
             "border border-[#ffbd07]  hover:bg-[#ffbd07] hover:text-[#fff] p-3 rounded-full h-12 w-12 mr-3 text-center cursor-pointer"
         }
         nextLinkClassName={" text-[#ffbd07] font-bold hover:text-[#fff] text-2xl"}
-        activeClassName={"bg-[#ffbd07] text-[#fff] "}
+        activeClassName={"bg-[#ffbd07] text-[#fff]"}
         breakClassName={"border-2 border-[#ffbd07] p-3 mr-3 pt-1 rounded-full h-12 w-12 cursor-pointer text-center font-bold text-[#ffbd07] text-2xl hover:bg-[#ffbd07] hover:text-[#fff]"}
       />
     </div>
