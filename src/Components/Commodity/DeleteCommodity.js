@@ -17,8 +17,7 @@ function DeleteCommodity({id}) {
 
     const deleteProduct = ()=>{
         axios.delete(`${URL}products/${id}`)
-        .then(console.log('deleted'))
-        setModalIsOpen(false)
+        .then(setModalIsOpen(false))
         axios.get(`${URL}products?_limit=5`)
         .then((res)=>dispatch(setProduct(res.data)))
     }

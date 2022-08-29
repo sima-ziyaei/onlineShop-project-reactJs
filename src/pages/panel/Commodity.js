@@ -32,7 +32,6 @@ function Commodity() {
       .get(`${URL}products?_page=${currentPage}&_limit=5`)
       .then((res) => {
         dispatch(setProduct(res.data));
-        console.log(res);
         setTotal(res.headers['x-total-count']) 
       })
       .catch((err) => console.log("error:" + err));
