@@ -22,8 +22,8 @@ function AppRoutes() {
       <Routes>
         <Route element={<MainNavbar />}>
           <Route path="/" element={<Home />} />
-          <Route path="home/:category" element={<Category />} />
-          <Route path="home/:category/:cardinfo" element={<CardInfo />} />
+          <Route path="/:category" element={<Category />} />
+          <Route path="/:category/:id" element={<CardInfo />} />
           <Route path="manageform" element={<ManageForm />} />
           <Route path="cart" element={<Cart />} />
           <Route path="cart/:buy" element={<Buy />} />

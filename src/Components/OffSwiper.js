@@ -5,10 +5,13 @@ import { Pagination } from "swiper";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/offSwiper.css";
+import { useNavigate } from "react-router-dom";
 
 function OffSwiper() {
   const [offCards, setOffCards] = useState([]);
+  const [categories, setCategories]= useState([]);
   const URL = "http://localhost:3001/";
+  const navigate= useNavigate();
 
   useEffect(() => {
     getOffCards();
@@ -21,6 +24,11 @@ function OffSwiper() {
         setOffCards(res.data);
       })
       .catch((err) => console.log("error:" + err));
+      axios
+        .get(`${URL}category`)
+        .then((res) => {
+          setCategories(res.data);
+        })
   };
 
   return (
@@ -42,13 +50,21 @@ function OffSwiper() {
 
         {offCards.map((item) => {
             if(item.off !== '0'){
+              
           return (
-            <SwiperSlide className="border flex flex-col">
+            <div>
+            {categories.map((cate)=>{
+              if(item.category == cate.id){
+              return(
+                <SwiperSlide  onClick={()=> navigate(`/${cate.name}/${item.id}`)} className="border flex flex-col">
               <img src={`http://localhost:3001/files/${item.thumbnail}`} />
                <p> {item.name} </p>
                                 <p> {item.Price} </p>
                                
             </SwiperSlide>
+              )}
+            })}
+            </div>
           );
        } })}
       </Swiper>

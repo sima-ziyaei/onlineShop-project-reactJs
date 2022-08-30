@@ -2,22 +2,24 @@ import Slider from "../Components/Swiper";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import OffSwiper from "../Components/OffSwiper";
-import Card from '../Components/Card'
+import Card from '../Components/Card';
+import { useNavigate , Outlet, Link} from "react-router-dom";
 
 function Home() {
     const URL = "http://localhost:3001/";
-    const [safetyCards, setSafetyCards]=useState([]);
+    const navigate = useNavigate();
+    const [Cards, setCards]=useState([]);
     const [categories, setCategories]= useState([]);
 
     useEffect(()=>{
-        getSafety()
+        getCards()
     },[])
 
-    const getSafety=()=>{
+    const getCards=()=>{
          axios
         .get(`${URL}products`)
         .then((res) => {
-          setSafetyCards(res.data)
+          setCards(res.data)
         })
         .catch((err) => console.log("error:" + err));
         axios
@@ -38,13 +40,13 @@ function Home() {
             {categories.map((cate)=>{
                 return(
                 <div className="flex w-[100%] my-4">
-               <div className="border w-[20%] h-[320px] ml-5 text-2xl font-bold text-center"> {cate.name} </div> 
+               <Link to={cate.name} className="border w-[20%] h-[320px] ml-5 text-2xl font-bold text-center"> {cate.name} </Link> 
               
-                {safetyCards.map((el)=>{
+                {Cards.map((el)=>{
                     
                     if(cate.id == el.category){
                         return(
-                            <Card name={el.name} price={el.Price} photo={el.thumbnail} off={el.off} />
+                            <Card name={el.name} id={el.id} cate={cate.name} price={el.Price} photo={el.thumbnail} off={el.off} />
                         )
                     }
                })} 
@@ -52,7 +54,7 @@ function Home() {
             </div>
                 )
             })}
-            
+           <Outlet /> 
     </div>
      );
 }
