@@ -60,11 +60,9 @@ function Commodity() {
     <div className="mt-64 flex flex-col justify-center items-center ">
       <div className="flex w-[80%] justify-between">
         <p className="text-[#ffbd07] font-extrabold text-3xl border-b-4 border-[#ffbd07]">
-          مدیریت کالا ها{" "}
+          مدیریت کالا ها
         </p>
-        {/* <button className="border-2 font-bold p-3 rounded-2xl border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white ">
-          افزودن کالا{" "}
-        </button> */}
+
         <AddCommodity />
       </div>
       <table className="border-2 border-[#ffa5a4] mt-20 w-[80%] text-start">

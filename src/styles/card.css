@@ -1,0 +1,17 @@
+.inverted-border-radius::before{
+    content: " ";
+    position: absolute;
+    background-color: transparent;
+
+     margin-bottom: 150px;
+
+    bottom: 20px;
+    height: 50px;
+    width: 25px;
+    border-bottom-right-radius: 30px !important;
+    box-shadow:0 20px 0px 0px #FFCAAA!important; /* This is where the magic happens! */
+  }
+
+  .inverted-border-radius:hover::before{
+    bottom: 48px;
+  }

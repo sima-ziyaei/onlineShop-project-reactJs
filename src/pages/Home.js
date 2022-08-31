@@ -10,6 +10,7 @@ function Home() {
     const navigate = useNavigate();
     const [Cards, setCards]=useState([]);
     const [categories, setCategories]= useState([]);
+    let [cardCount, setCardCount] = useState(0)
 
     useEffect(()=>{
         getCards()
@@ -38,17 +39,18 @@ function Home() {
             <OffSwiper />
             
             {categories.map((cate)=>{
+                cardCount=0
                 return(
-                <div className="flex w-[100%] my-4">
-               <Link to={cate.name} className="border w-[20%] h-[320px] ml-5 text-2xl font-bold text-center"> {cate.name} </Link> 
+                <div className="grid grid-cols-4 gap-5 w-[100%] my-4">
+               <Link to={cate.name} className="border  h-[320px] ml-5 text-2xl font-bold text-center"> {cate.name} </Link> 
               
                 {Cards.map((el)=>{
-                    
-                    if(cate.id == el.category){
+                    if(cate.id == el.category && cardCount<=2){
+                        cardCount++
                         return(
                             <Card name={el.name} id={el.id} cate={cate.name} price={el.Price} photo={el.thumbnail} off={el.off} />
-                        )
-                    }
+                            )
+                        }
                })} 
                
             </div>
