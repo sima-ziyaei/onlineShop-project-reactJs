@@ -2,8 +2,8 @@
     content: " ";
     position: absolute;
     background-color: transparent;
-
-     margin-bottom: 150px;
+  z-index: 20;
+     margin-bottom: 170px;
 
     bottom: 20px;
     height: 50px;

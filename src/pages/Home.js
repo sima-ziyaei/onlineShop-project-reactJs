@@ -40,7 +40,7 @@ function Home() {
       {categories.map((cate) => {
         cardCount = 0;
         return (
-          <div className="grid grid-cols-4 gap-5 w-[100%] my-8">
+          <div className="grid grid-cols-4 gap-12 w-[100%] my-8">
             <Link
               to={cate.name}
               className="h-[320px] ml-5 mt-7 text-3xl font-bold text-center"

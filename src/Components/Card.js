@@ -9,7 +9,7 @@ function Card({ name, photo, price, off, id, cate }) {
   return (
     <div
       onClick={() => navigate(`/${cate}/${id}`)}
-      className="bg-white b-shadow ml-6 relative text-[#013662] rounded-xl h-[380px]  mt-5"
+      className="bg-white b-shadow ml-6 relative text-[#013662] rounded-xl h-[420px]  mt-5"
     >
       <img
         src={`http://localhost:3001/files/${photo}`}
