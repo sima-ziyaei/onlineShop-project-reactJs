@@ -36,7 +36,7 @@ function Card({ name, photo, price, off, id, cate }) {
             {persianNumber(+price)} تومان
           </p>
         )}
-        <button className="border-2 border-[#013662] absolute bottom-1 w-[40%] h-10 left-[32%] rounded-xl text-md font-semibold"> خرید </button>
+        <button className=" bg-[#013662] text-[#FFCAAA] absolute bottom-1 w-[40%] h-10 left-[32%] rounded-xl text-lg font-semibold"> خرید </button>
         {/* <p> بیشتر </p> */}
       </div>
     </div>

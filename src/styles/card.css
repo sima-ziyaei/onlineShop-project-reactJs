@@ -13,5 +13,40 @@
   }
 
   .inverted-border-radius:hover::before{
-    bottom: 48px;
+    bottom: 47px;
   }
+
+  .inverted-border-radius-tow::before{
+    content: " ";
+    position: absolute;
+    background-color: transparent;
+
+     margin-bottom: 150px;
+     left: 93.5%;
+    bottom: 25.2%;
+    height: 50px;
+    width: 25px;
+    border-bottom-right-radius: 30px !important;
+    box-shadow:0 20px 0px 0px #FFCAAA!important; /* This is where the magic happens! */
+  }
+
+
+  .inner-box {
+    padding: 3rem 6rem;
+    display: inline-block;
+    border: 3px solid #013662;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    position: relative;
+  }
+    .inner-box::before {
+        content: '';
+        border: 2px solid #013662;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+    }

@@ -73,7 +73,9 @@ function Category() {
                         })}
                        <Outlet />
                     </div>
+
                     </div>
+                    <button onClick={()=>navigate('/')} className=' bg-[#013662] text-[#FFCAAA] p-3 bottom-1 h-10 text-center rounded-xl text-lg font-semibold mr-[88%] mt-12 w-24 pt-2'> بازگشت  </button>
            </> )
         }
        })}
