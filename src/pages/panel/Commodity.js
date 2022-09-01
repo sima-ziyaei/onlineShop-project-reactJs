@@ -59,15 +59,15 @@ function Commodity() {
   return (
     <div className="mt-64 flex flex-col justify-center items-center ">
       <div className="flex w-[80%] justify-between">
-        <p className="text-[#ffbd07] font-extrabold text-3xl border-b-4 border-[#ffbd07]">
+        <p className="text-[#013662] font-extrabold text-3xl border-b-4 border-[#013662]">
           مدیریت کالا ها
         </p>
 
         <AddCommodity />
       </div>
-      <table className="border-2 border-[#ffa5a4] mt-20 w-[80%] text-start">
+      <table className="border-2 border-[#013662] text-[#013662] mt-20 w-[80%] text-start">
         <tbody>
-          <tr className=" bg-[#ffa5a4] h-10">
+          <tr className=" bg-[#013662] text-white h-10">
             <th className="text-center"> تصویر </th>
             <th className="text-center"> نام کالا </th>
             <th className="text-center"> دسته بندی </th>
@@ -77,7 +77,7 @@ function Commodity() {
 
           {products.map((el) => {
             return (
-              <tr key={el.id} className="  odd:bg-[#7bdeeb]">
+              <tr key={el.id} className="  odd:bg-[#ccc9eb]">
                 <td className=" flex justify-center">
                   <img
                     src={`http://localhost:3001/files/${el.thumbnail}`}

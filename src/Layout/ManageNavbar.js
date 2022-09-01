@@ -6,14 +6,14 @@ const ManageNavbar=()=>{
     return(
         <nav >
                 <div className='  w-[100%] h-16 bg-[#ffa5a4] p-4 flex justify-between'>
-                    <NavLink className='w-16 h-16 text-center z-20 p-4  rounded-[50%] bg-white font-bold text-[#7bdeeb] border-2 border-[#7bdeeb]' to='/'  >لوگو</NavLink>
+                    <NavLink className='w-16 h-16 text-center z-20 p-4  rounded-[50%] bg-white font-bold text-[#013662] border-2 border-[#013662]' to='/'  >لوگو</NavLink>
                     <div className='mt-4  ' >
-                        <NavLink to='commodity' className='navLinks bg-[#7bdeeb] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white' >کالا</NavLink>
-                        <NavLink to='inventory' className='navLinks bg-[#7bdeeb] rounded-xl w-[5%] h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'> موجودی </NavLink>
-                        <NavLink to='order' className='navLinks bg-[#7bdeeb] rounded-xl w-[5%] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'> سفارش</NavLink>
+                        <NavLink to='commodity' className='navLinks bg-[#013662] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#013662] hover:border-[#013662] hover:bg-white' >کالا</NavLink>
+                        <NavLink to='inventory' className='navLinks bg-[#013662] rounded-xl w-[5%] h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#013662] hover:border-[#013662] hover:bg-white'> موجودی </NavLink>
+                        <NavLink to='order' className='navLinks bg-[#013662] rounded-xl w-[5%] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#013662] hover:border-[#013662] hover:bg-white'> سفارش</NavLink>
                     </div>
                     <div className='mt-4'>
-                        <Link to='/' className='z-30  text-[#7bdeeb] font-semibold border-2 border-[#7bdeeb] p-2 bg-white rounded-lg hover:bg-[#7bdeeb] hover:border-white hover:text-white'>بازگشت </Link>
+                        <Link to='/' className='z-30  text-[#013662] font-semibold border-2 border-[#013662] p-2 bg-white rounded-lg hover:bg-[#013662] hover:border-white hover:text-white'>بازگشت </Link>
                     </div>
                 </div>
                 <div className='svgContain '>

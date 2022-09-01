@@ -62,7 +62,7 @@ function Order() {
   return (
     <div className="mt-64 flex flex-col justify-center items-center">
       <div className="flex w-[80%] justify-between">
-        <p className="text-[#ffbd07] font-extrabold text-3xl border-b-4 border-[#ffbd07]">
+        <p className="text-[#013662] font-extrabold text-3xl border-b-4 border-[#013662]">
           {" "}
           مدیریت سفارش ها{" "}
         </p>
@@ -79,7 +79,7 @@ function Order() {
             />
             <label
               for="all"
-              className="border-b-2 border-[#ffbd07] text-[#ffbd07] font-extrabold text-2xl"
+              className="border-b-2 border-[#013662] text-[#013662] font-extrabold text-2xl"
             >
               همه 
             </label>
@@ -97,7 +97,7 @@ function Order() {
             />
             <label
               for="delivered"
-              className="border-b-2 border-[#ffbd07] text-[#ffbd07] font-extrabold text-2xl"
+              className="border-b-2 border-[#013662] text-[#013662] font-extrabold text-2xl"
             >
               سفارش های تحویل داده شده
             </label>
@@ -115,15 +115,15 @@ function Order() {
             />
             <label
               for="notDelivered"
-              className="border-b-2 border-[#ffbd07] text-[#ffbd07] font-extrabold text-2xl"
+              className="border-b-2 border-[#013662] text-[#013662] font-extrabold text-2xl"
             >
               سفارش های در حال انتظار
             </label>
           </div>
         </div>
       </div>
-      <table className="border-2 border-[#ffa5a4] mt-24 w-[80%] ">
-        <tr className=" bg-[#ffa5a4] h-10">
+      <table className="border-2 border-[#013662] mt-24 w-[80%] ">
+        <tr className=" bg-[#013662] text-white h-10">
           <th className="text-center">نام کاربر</th>
           <th className="text-center">مجموع مبلغ</th>
           <th className="text-center">زمان ثبت سفارش</th>
@@ -133,7 +133,7 @@ function Order() {
         {isDelivered === "delivered"
           ? deliveredOrders.map((el) => {
               return (
-                <tr key={el.id} className="  odd:bg-[#7bdeeb]">
+                <tr key={el.id} className="  odd:bg-[#ccc9eb]">
                   <td  className="text-center">
                     {el.username} {el.lastname}
                   </td>
@@ -148,7 +148,7 @@ function Order() {
           :isDelivered === "notDelivered"
           ? notDeliveredOrders.map((el) => {
               return (
-                <tr key={el.id} className=" odd:bg-[#7bdeeb]">
+                <tr key={el.id} className=" odd:bg-[#ccc9eb]">
                   <td  className="text-center">
                     {el.username} {el.lastname}
                   </td >
@@ -162,7 +162,7 @@ function Order() {
             }): 
             allOrders.map((el) => {
               return (
-                <tr key={el.id} className=" odd:bg-[#7bdeeb]">
+                <tr key={el.id} className=" odd:bg-[#ccc9eb]">
                   <td className="text-center">
                     {el.username} {el.lastname}
                   </td>

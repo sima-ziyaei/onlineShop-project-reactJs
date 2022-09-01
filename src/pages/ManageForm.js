@@ -51,9 +51,9 @@ export default function ManageForm() {
     >
       {({ errors, touched }) => (
         <div className=" mt-64 mb-20 flex flex-col justify-center items-center w-[100%] h-[500px] ">
-          <div className="border-4 border-[#7bdeeb] shadow-outline shadow-2xl w-[30%] h-[90%] rounded text-[#7bdeeb] ">
+          <div className="border-4 border-[#ffcaaa] shadow-outline shadow-2xl w-[30%] h-[90%] rounded text-[#013662] ">
             <Form className="flex flex-col justify-center items-center">
-              <div className="border-2 border-white bg-[#7bdeeb] rounded-2xl text-white w-28 h-10 text-center font-bold absolute top-[52%] pt-1 text-lg">
+              <div className="border-2 border-white bg-[#ffcaaa] rounded-2xl text-white w-28 h-10 text-center font-bold absolute top-[52%] pt-1 text-lg">
                 {" "}
                 مدیریت{" "}
               </div>
@@ -64,7 +64,7 @@ export default function ManageForm() {
                 نام کاربری
               </lable>
               <Field
-                className="border-2  my-4  w-[70%] rounded-md h-12 pr-2 focus:border-[#7bdeeb] focus:outline-none"
+                className="border-2  my-4  w-[70%] rounded-md h-12 pr-2 focus:border-[#013662] focus:outline-none"
                 type="text"
                 placeholder="نام کاربری"
                 name="username"
@@ -83,7 +83,7 @@ export default function ManageForm() {
                 رمز عبور
               </lable>
               <Field
-                className="border-2 my-4  w-[70%] rounded-md h-12 pr-2 focus:border-[#7bdeeb] focus:outline-none"
+                className="border-2 my-4  w-[70%] rounded-md h-12 pr-2 focus:border-[#013662] focus:outline-none"
                 type="password"
                 placeholder="رمز عبور"
                 name="password"
@@ -96,13 +96,13 @@ export default function ManageForm() {
               </div>
               <div className="mb-4">
                 <button
-                  className="border-2 border-[#7bdeeb] font-bold text-lg h-10 my-4 w-[120px] rounded-xl ml-4 bg-[#7bdeeb] text-white"
+                  className="border-2 border-[#013662] font-bold text-lg h-10 my-4 w-[120px] rounded-xl ml-4 bg-[#013662] text-white"
                   type="submit"
                 >
                   ورود
                 </button>
                 <button
-                  className="border-2 border-[#7bdeeb] my-4 w-[120px] h-10 text-[#7bdeeb] font-bold rounded-xl mr-4 "
+                  className="border-2 border-[#013662] my-4 w-[120px] h-10 text-[#013662] font-bold rounded-xl mr-4 "
                   onClick={() => navigate("/")}
                 >
                   {" "}

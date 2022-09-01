@@ -33,10 +33,10 @@ function Inventory() {
   return (
     <div className="mt-64 flex flex-col justify-center items-center">
       <div className="flex w-[80%] justify-between">
-      <p className="text-[#ffbd07] font-extrabold text-3xl border-b-4 border-[#ffbd07]">مدیریت موجودی و قیمت ها</p>
+      <p className="text-[#013662] font-extrabold text-3xl border-b-4 border-[#013662]">مدیریت موجودی و قیمت ها</p>
       <SaveEdit /> </div>
-      <table className="border-2 border-[#ffa5a4] mt-20 w-[80%] text-start">
-        <tr className=" bg-[#ffa5a4] h-10">
+      <table className="border-2 border-[#013262] mt-20 w-[80%] text-start">
+        <tr className=" bg-[#013662] text-white h-10">
           <th className="text-center">کالا</th>
           <th className="text-center"> قیمت (تومان) </th>
           <th className="text-center">موجودی</th>
@@ -44,7 +44,7 @@ function Inventory() {
 
         {products.map((el) => {
           return (
-            <tr key={el.id} className="  odd:bg-[#7bdeeb]">
+            <tr key={el.id} className="  odd:bg-[#ccc9eb]">
               <td className="text-center"> {el.name} </td>
               <EditInventory price={persianNumber(+(el.Price))} stock={persianNumber(+(el.stock))} />
               

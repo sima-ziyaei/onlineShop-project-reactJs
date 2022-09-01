@@ -11,10 +11,10 @@ const MainNavbar = () => {
         
             <nav className='navbar'>
                 <div className='bg-[#ffa5a4] w-[100%] h-16 p-4 flex justify-between'>
-                    <NavLink className='w-16 h-16 text-center z-20 p-4 rounded-[50%] bg-[#7bdeeb] text-white border-2 border-white font-bold' to='/'  >لوگو</NavLink>
+                    <NavLink className='w-16 h-16 text-center z-20 p-4 rounded-[50%] bg-[#013662] text-[#ffcaaa] border-2 border-[#ffcaaa] font-bold' to='/'  >لوگو</NavLink>
                     <div className='flex'>
-                        <NavLink to='manageform' className='ml-3 text-5xl text-white hover:text-[#7bdeeb]' > <MdManageAccounts /> </NavLink>
-                        <NavLink to='cart' className='text-5xl text-white hover:text-[#7bdeeb]'>  <MdShoppingCart /> </NavLink>
+                        <NavLink to='manageform' className='ml-3 text-5xl text-white hover:text-[#013662]' > <MdManageAccounts /> </NavLink>
+                        <NavLink to='cart' className='text-5xl text-white hover:text-[#013662]'>  <MdShoppingCart /> </NavLink>
 
                     </div>
                 </div>

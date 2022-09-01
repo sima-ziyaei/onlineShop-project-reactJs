@@ -23,12 +23,12 @@ function DeleteCommodity({id}) {
     }
 
     return ( <>
-    <button onClick={openModal} className='text-[#ffbd07] text-center'> <BsTrashFill /> </button>
-    <Modal isOpen={modalIsOpen} className=' p-2 w-[30%] h-[40%] bg-white border-2 rounded-md absolute left-[30%]  border-[#7bdeeb] top-[30%] flex flex-col items-center justify-center'>
-        <div className="text-2xl mb-6"> آیا می خواهید این کالا را حذف کنید؟ </div>
+    <button onClick={openModal} className='text-[#013662] text-center'> <BsTrashFill /> </button>
+    <Modal isOpen={modalIsOpen} className=' p-2 w-[30%] h-[40%] bg-white border-2 rounded-md absolute left-[30%]  border-[#013662] top-[30%] flex flex-col items-center justify-center'>
+        <div className="text-2xl mb-6 text-[#013662]"> آیا می خواهید این کالا را حذف کنید؟ </div>
         <div>
         <button onClick={deleteProduct} className='border-2 ml-4 border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-bold p-2 px-4 text-xl rounded-xl '> بله </button>
-        <button onClick={()=> setModalIsOpen(false)} className='border-2 mr-4 border-[#7bdeeb] text-[#7bdeeb] hover:bg-[#7bdeeb] hover:text-white font-bold p-2 px-4 text-xl rounded-xl '> خیر </button>
+        <button onClick={()=> setModalIsOpen(false)} className='border-2 mr-4 border-[#013662] text-[#013662] hover:bg-[#013662] hover:text-white font-bold p-2 px-4 text-xl rounded-xl '> خیر </button>
         </div>
     </Modal>
 

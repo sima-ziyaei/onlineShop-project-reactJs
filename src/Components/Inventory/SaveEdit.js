@@ -11,7 +11,7 @@ function SaveEdit() {
         
     }
 
-    return (  <button className="border-2 font-bold p-3 rounded-2xl border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white "> ذخیره </button> );
+    return (  <button className="border-2 font-bold p-3 rounded-2xl border-[#013662] text-[#013662] hover:bg-[#013662] hover:text-white "> ذخیره </button> );
 }
 
 export default SaveEdit;

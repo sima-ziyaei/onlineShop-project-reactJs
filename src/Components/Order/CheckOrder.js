@@ -41,12 +41,12 @@ function CheckOrder({ id }) {
       <button onClick={check} className="text-black text-center ">
         <BsCalendar2CheckFill />
       </button>
-      <Modal isOpen={modalIsOpen} className="w-[50%] h-[80%] border bg-white">
+      <Modal isOpen={modalIsOpen} className="w-[50%] h-[80%] border absolute left-[26%] top-[10%] bg-white">
         {selectedProduct.map((el) => {
           return (
             <div className="m-3">
               <div className="flex justify-between m-2 mr-0">
-                <span className="font-extrabold text-2xl border-b-2 border-[#ffbd07] text-[#ffbd07]"> اطلاعات سفارش </span>
+                <span className="font-extrabold text-2xl border-b-2 border-[#013662] text-[#013662]"> اطلاعات سفارش </span>
                 <span
                   onClick={() => {
                     setModalIsOpen(false);
@@ -63,15 +63,15 @@ function CheckOrder({ id }) {
               <div className=" my-2">{` زمان سفارش: ${new Date(
                 el.expectAt
               ).toLocaleString("fa-IR", option)}`}</div>
-              <table className="w-[90%] my-4 mr-[5%]">
-                <tr className="text-center border bg-[#ffa5a4]">
+              <table className="w-[90%] my-4 mr-[5%] border border-[#013662]">
+                <tr className="text-center border bg-[#013662] text-white">
                   <th className="text-center">کالا</th>
                   <th className="text-center">قیمت</th>
                   <th className="text-center">تعداد</th>
                 </tr>
                 {el.products.map((item) => {
                   return (
-                    <tr className="odd:bg-[#7bdeeb]">
+                    <tr className="odd:bg-[#ffcaaa]">
                       <td className="text-center"> {item.name} </td>
                       <td className="text-center"> {item.price} </td>
                       <td className="text-center"> {item.count} </td>
@@ -84,7 +84,7 @@ function CheckOrder({ id }) {
                   el.createdAt
                 ).toLocaleString("fa-IR", option)}`}</div>
               ) : (
-                <button onClick={deliverOrder} className=" my-2 font-bold  border-2 border-[#ffbd07] text-[#ffbd07] hover:bg-[#ffbd07] hover:text-white p-3 rounded-xl">
+                <button onClick={deliverOrder} className=" my-2 font-bold  border-2 border-[#013662] text-[#013662] hover:bg-[#013662] hover:text-white p-3 rounded-xl">
                  
                   تحویل سفارش
                 </button>
