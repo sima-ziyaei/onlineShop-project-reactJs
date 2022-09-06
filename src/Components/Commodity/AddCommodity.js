@@ -6,6 +6,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { BsX } from "react-icons/bs";
 import MultiImageInput from 'react-multiple-image-input';
+import { useEffect } from "react";
 
 function AddCommodity() {
   const URL = "http://localhost:3001/";
@@ -17,11 +18,24 @@ function AddCommodity() {
     category: "",
     subCategory: "",
     information: "",
-    photo: {},
+    photo: [],
+    thumbnail:'',
     stock: "",
     off: "",
   });
+  const [errors, setErrors] = useState({
+    name: "",
+    price: "",
+    category: "",
+    subCategory: "",
+    information: "",
+    photo: [],
+    thumbnail:'',
+    stock: "",
+    off: "",
+  })
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const crop = {
     unit: "%",
     aspect: 4 / 3,
@@ -30,31 +44,40 @@ function AddCommodity() {
 
   const [images, setImages] = useState({});
 
-  const handlePhoto = (e) => {
-    const uploadeFile = e.target.files[0] ;
+  // const handlePhoto = (e) => {
+  //   const uploadeFile = e.target.files[0] ;
     
-    setFormData((prev) => ({ ...prev, photo:e.target.files[0] }));
-  };
+  //   setFormData((prev) => ({ ...prev, photo:e.target.files[0] }));
+  // };
 
   const openModal = () => {
     setModalIsOpen(true);
   };
 
-  const handleSubmit = async (e) => {
+  
+
+  const handleSubmit =  (e) => {
     e.preventDefault();
     console.log(formData.photo);
     setFormData((prev) => ({ ...prev, photo:images }));
-    // await axios
-    //   .post(`http://localhost:3001/products`, formData)
-    //   .then((response) => console.log(response.data.id))
-    //   .catch((err) => alert(err.message));
-    // setModalIsOpen(false);
+   
+     axios
+        .post(`http://localhost:3001/products`, formData)
+        .then((response) => setImages([]))
+        .catch((err) => alert(err.message));
+      setModalIsOpen(false);
+    
   };
 
   const handleFormData = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
   };
+
+  // useEffect(()=>{
+  //   validate()
+  // },[errors])
 
   return (
     <div>
@@ -104,6 +127,8 @@ function AddCommodity() {
       theme={"light"}
       cropConfig={{ crop, ruleOfThirds: true }}
     />
+
+    <input type='file' name='thumbnail' onChange={handleFormData}  />
           نام کالا
           <input
             type="text"

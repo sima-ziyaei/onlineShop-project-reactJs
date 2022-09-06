@@ -1,13 +1,31 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/card.css";
+import {setPurchases} from '../../redux/cartSlice'
+
 
 function CardInfo() {
   const { id } = useParams();
   const URL = "http://localhost:3001/";
   const [card, setCard] = useState([]);
+  const [ number, setNumber ] = useState(1);
+  const products = useSelector((state) => state.product.productItem);
+  const value = useSelector((state)=> state.purchases.value)
   const navigate= useNavigate()
+  const dispatch= useDispatch();
+  const [ state, setState] = useState({
+    product:products.find((el)=>el.id===id),
+    productId:id
+  })
+
+  const addToCart=(productId)=>{
+    const item = value.find((el)=>el.id=== productId);
+
+  if(item !== undefined)
+    dispatch(setPurchases([...value.filter((el)=>el.id != productId)]))
+  } 
 
   useEffect(() => {
     getCard();
@@ -18,10 +36,15 @@ function CardInfo() {
       .get(`${URL}products?id=${id}`)
       .then((res) => {
         setCard(res.data);
-        console.log(res.data);
+        console.log(res.data[0].photo);
       })
       .catch((err) => console.log("error:" + err));
   };
+
+  const handleChangeNumber= (e)=>{
+    const {value} = e.target;
+    setNumber(value)
+  }
 
   const persianNumber = (x) => {
     return x.toLocaleString("fa-IR");
@@ -33,8 +56,15 @@ function CardInfo() {
         return (
           <div>
             <div className="grid grid-cols-3 gap-6 mr-10">
+              
+              {/* {el.photo.map((photo, index)=>{
+                <img
+                src={`http://localhost:3001/files/${photo.photo}`}
+                className="b-shadow h-[300px] rounded-lg hover:w-[130%] hover:h-[360px]"
+              />
+              })} */}
               <img
-                src={`http://localhost:3001/files/${el.thumbnail}`}
+                src={`http://localhost:3001/files/${el.photo}`}
                 className="b-shadow h-[300px] rounded-lg hover:w-[130%] hover:h-[360px]"
               />
               <div className="flex flex-col justify-around items-start ">
@@ -42,6 +72,8 @@ function CardInfo() {
                   
                   {el.name}
                 </p>
+                {/* <input  type='number' value={number} onChange={handleChangeNumber} className='border-2 border-[#013662] w-[50px] rounded-lg pr-1' /> */}
+                <div><span>-</span>{number}<span>+</span></div>
                 <button className="border-2 border-[#013662] text-[#013662] rounded-lg p-3 text-xl hover:text-white hover:bg-[#013662] hover:scale-[0.9] ">
                   
                   اضافه کردن به سبد خرید
@@ -84,7 +116,7 @@ function CardInfo() {
                 )}
               </div>
             </div>
-            <div className="inner-box bg-transparent w-[70%] mt-12 mr-[15%] text-[#013662] text-lg"> {el.information} </div>
+            <div className="inner-box bg-transparent w-[70%] mt-12 mr-[15%] text-[#013662] text-lg"><p> توضیحات: </p> {el.information} </div>
             
             <div className="w-[300px] h-[300px] z-[-1] rounded-full bg-[#FFCAAA] absolute top-[38%] left-[60%]"></div>
             <div className="w-[100px] h-[100px] z-[-1] rounded-full bg-[#FFA5A4] absolute top-[68%] left-[60%]"></div>

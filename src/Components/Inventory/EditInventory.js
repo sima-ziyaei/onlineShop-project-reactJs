@@ -12,9 +12,12 @@ function EditInventory({ price, stock }) {
   // const newPrice = useSelector((state) => state.product.newPrice);
   // const newStock = useSelector((state) => state.product.newStock);
 
-  const keyDownHandler =()=>{
-    setDisablePriceButton(true)
-    setDisableStockButton(true)
+  const keyDownHandler =(event)=>{
+    if(event.keyCode == '27'){
+      setDisablePriceButton(true)
+      setDisableStockButton(true)
+    }
+    
   }
 
   document.addEventListener('keydown', keyDownHandler);

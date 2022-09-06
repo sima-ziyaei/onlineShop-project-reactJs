@@ -11,6 +11,7 @@ import AddCommodity from "../../Components/Commodity/AddCommodity";
 import DeleteCommodity from "../../Components/Commodity/DeleteCommodity";
 import EditCommodity from "../../Components/Commodity/EditCommodity";
 import Pagination from "../../Components/Pagination";
+import { useSearchParams } from "react-router-dom";
 
 function Commodity() {
   // const [products, setProducts] = useState([]);
@@ -26,6 +27,7 @@ function Commodity() {
   useEffect(() => {
     getProducts();
   }, []);
+  const [ search, setSearch]= useSearchParams();
 
   const getProducts = async (currentPage) => {
     await axios
@@ -118,7 +120,7 @@ function Commodity() {
         </tbody>
       </table>
 
-      <Pagination currentPage={currentPage} total={total} getProducts={getProducts} />
+      <Pagination currentPage={currentPage} setSearch= {setSearch} total={total} getProducts={getProducts} />
     </div>
   );
 }

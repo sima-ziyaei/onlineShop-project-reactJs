@@ -1,8 +1,15 @@
-import { NavLink, Outlet, Link} from 'react-router-dom';
+import { NavLink, Outlet, Link, useNavigate} from 'react-router-dom';
+import { IS_LOGGGED_IN } from '../config/constants';
 import '../styles/manageNavbar.css';
 
 
 const ManageNavbar=()=>{
+    const navigate = useNavigate();
+    const handleExit=()=>{
+        // localStorage.setItem(IS_LOGGGED_IN, false);
+        // localStorage.clear();
+        navigate('/')
+    }
     return(
         <nav >
                 <div className='  w-[100%] h-16 bg-[#ffa5a4] p-4 flex justify-between'>
@@ -13,7 +20,7 @@ const ManageNavbar=()=>{
                         <NavLink to='order' className='navLinks bg-[#013662] rounded-xl w-[5%] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#013662] hover:border-[#013662] hover:bg-white'> سفارش</NavLink>
                     </div>
                     <div className='mt-4'>
-                        <Link to='/' className='z-30  text-[#013662] font-semibold border-2 border-[#013662] p-2 bg-white rounded-lg hover:bg-[#013662] hover:border-white hover:text-white'>بازگشت </Link>
+                        <dev  onClick={handleExit} className='z-30  text-[#013662] font-semibold border-2 border-[#013662] p-2 bg-white rounded-lg hover:bg-[#013662] hover:border-white hover:text-white'>بازگشت </dev>
                     </div>
                 </div>
                 <div className='svgContain '>

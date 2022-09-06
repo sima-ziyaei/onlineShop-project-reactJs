@@ -2,11 +2,13 @@ import ReactPaginate from "react-paginate";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import { IoArrowUndoSharp } from "react-icons/io5";
 
-function Pagination({ currentPage, getProducts, total }) {
 
+function Pagination({ currentPage, getProducts, total, setSearch }) {
+  
 
   const handlePageClick = async(data) => {
     currentPage = data.selected + 1;
+    // setSearch({currentPage, value})
     await getProducts(currentPage)
   };
 

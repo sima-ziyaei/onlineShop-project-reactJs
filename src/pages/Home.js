@@ -5,11 +5,16 @@ import OffSwiper from "../Components/OffSwiper";
 import Card from "../Components/Card";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 import {BsBoxArrowInLeft} from 'react-icons/bs'
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setProduct,
+} from "../redux/productSlice";
 
 function Home() {
   const URL = "http://localhost:3001/";
   const navigate = useNavigate();
-  const [Cards, setCards] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.productItem);
   const [categories, setCategories] = useState([]);
   let [cardCount, setCardCount] = useState(0);
 
@@ -21,7 +26,7 @@ function Home() {
     axios
       .get(`${URL}products`)
       .then((res) => {
-        setCards(res.data);
+        dispatch(setProduct(res.data))
       })
       .catch((err) => console.log("error:" + err));
     axios
@@ -49,7 +54,7 @@ function Home() {
               <img src={`http://localhost:3001/files/${cate.icon}`} className='mt-6 rounded-full w-64 h-64 shadow-md mr-[10%]' />
             </Link>
 
-            {Cards.map((el) => {
+            {products.map((el) => {
               if (cate.id == el.category && cardCount <= 2) {
                 cardCount++;
                 return (
