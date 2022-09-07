@@ -3,13 +3,13 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 import { IoArrowUndoSharp } from "react-icons/io5";
 
 
-function Pagination({ currentPage, getProducts, total, setSearch }) {
-  
+function Pagination({limit,currentPage, getProducts, total, setSearch }) {
+  const page = ' page';
 
   const handlePageClick = async(data) => {
     currentPage = data.selected + 1;
-    // setSearch({currentPage, value})
-    await getProducts(currentPage)
+    setSearch({page, currentPage})
+    getProducts(currentPage)
   };
 
   return (
@@ -19,7 +19,7 @@ function Pagination({ currentPage, getProducts, total, setSearch }) {
         nextLabel={<IoArrowRedoSharp />}
         breakLabel={"..."}
         // pageCount={6}
-        pageCount={Math.ceil(total/5)}
+        pageCount={Math.ceil(total/limit)}
         marginPagesDisplayed={1}
         pageRangeDisplayed={1}
         onPageChange={handlePageClick}

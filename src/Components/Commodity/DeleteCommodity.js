@@ -18,12 +18,12 @@ function DeleteCommodity({id}) {
         setModalIsOpen(true)
     }
 
-    const deleteProduct = ()=>{
-        axios.delete(`${URL}products/${id}`)
-        .then(setModalIsOpen(false))
-        // axios.get(`${URL}products?_limit=5`)
-        // .then((res)=>dispatch(setProduct(res.data)))
-    }
+    // const deleteProduct = ()=>{
+    //     axios.delete(`${URL}products/${id}`)
+    //     .then(setModalIsOpen(false))
+    //     // axios.get(`${URL}products?_limit=5`)
+    //     // .then((res)=>dispatch(setProduct(res.data)))
+    // }
 
 
 

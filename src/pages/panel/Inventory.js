@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import EditInventory from '../../Components/Inventory/EditInventory'
 import SaveEdit from "../../Components/Inventory/SaveEdit";
 import Pagination from "../../Components/Pagination";
+import { useSearchParams } from "react-router-dom";
 
 
 function Inventory() {
@@ -10,18 +11,20 @@ function Inventory() {
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal]= useState('');
   const URL = "http://localhost:3001/";
-
+  const [limit , setLimit]= useState(5)
+  
+  const [ search, setSearch]= useSearchParams();
   const persianNumber = (x) => {
     return x.toLocaleString("fa-IR");
 }
 
   useEffect(() => {
    getProducts();
-  }, []);
+  }, [setSearch]);
 
   const getProducts =  async(currentPage) => {
     await axios
-      .get(`${URL}products?_page=${currentPage}&_limit=5`)
+      .get(`${URL}products?_page=${currentPage}&_limit=${limit}`)
       .then((res) => {
         setProducts(res.data);
         setTotal(res.headers['x-total-count']) 
@@ -53,7 +56,7 @@ function Inventory() {
         })}
       </table>
 
-     <Pagination currentPage={currentPage} total={total} getProducts={getProducts}/>
+     <Pagination limit={limit} setSearch={setSearch} currentPage={currentPage} total={total} getProducts={getProducts}/>
     </div>
   );
 }

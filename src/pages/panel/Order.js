@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import CheckOrder from "../../Components/Order/CheckOrder";
 import Pagination from "../../Components/Pagination";
+import { useSearchParams } from "react-router-dom";
 
 function Order() {
   const [allOrders, setAllOrders] = useState([]);
@@ -10,6 +11,8 @@ function Order() {
   const [isDelivered, setDelivered] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal]= useState('');
+  const [ search, setSearch]= useSearchParams();
+  const [limit , setLimit]= useState(5)
   const URL = "http://localhost:3001/";
   const option = {
     year: "numeric",
@@ -20,7 +23,7 @@ function Order() {
   useEffect(() => {
    
     getAllOrders();
-  }, [isDelivered]);
+  }, [isDelivered, setSearch]);
 
   const persianNumber = (x) => {
     return x.toLocaleString("fa-IR");
@@ -28,7 +31,7 @@ function Order() {
 
   const getAllOrders = async(currentPage) => {
    await axios
-      .get(`${URL}orders?_page=${currentPage}&_limit=5`)
+      .get(`${URL}orders?_page=${currentPage}&_limit=${limit}`)
       .then((res) => {
         setAllOrders(res.data);
         setTotal(res.headers['x-total-count']) 
@@ -36,7 +39,7 @@ function Order() {
       .catch((err) => console.log(err));
 
      await axios
-      .get(`${URL}orders?delivered=true&_page=${currentPage}&_limit=5`)
+      .get(`${URL}orders?delivered=true&_page=${currentPage}&_limit=${limit}`)
       .then((res) => {
         setDeliveredOrders(res.data);
         setTotal(res.headers['x-total-count']) 
@@ -44,7 +47,7 @@ function Order() {
       .catch((err) => console.log(err));
 
       await axios
-      .get(`${URL}orders?delivered=false&_page=${currentPage}&_limit=5`)
+      .get(`${URL}orders?delivered=false&_page=${currentPage}&_limit=${limit}`)
       .then((res) => {
         setNotDeliveredOrders(res.data);
         setTotal(res.headers['x-total-count']) 
@@ -176,7 +179,7 @@ function Order() {
             })
             }
       </table>
-      <Pagination currentPage={currentPage} total={total} getProducts={getAllOrders}/>
+      <Pagination limit={limit} currentPage={currentPage} setSearch= {setSearch} total={total} getProducts={getAllOrders}/>
     </div>
   );
 }

@@ -40,6 +40,11 @@ function EditCommodity({ id }) {
       const getData = res.data;
       setSelectedProduct(getData);
     });
+    category.map((el)=>{
+      if(el.id === selectedProduct.category){
+        setSelectedProduct((prev)=> [{...prev, category: el.name}])
+      }
+    })
   };
 
   const handleChangeInput = (e) => {
@@ -123,8 +128,8 @@ function EditCommodity({ id }) {
                 {category.map((item) => {
                   return (
                     <option
-                      value={item.name}
-                      // selected={item.id == el.category ? true : false}
+                      value={el.category}
+                       selected={true}
                     >
                       {item.name}
                     </option>

@@ -6,7 +6,6 @@ import {
   setProduct,
   setSubCategory,
 } from "../../redux/productSlice";
-
 import AddCommodity from "../../Components/Commodity/AddCommodity";
 import DeleteCommodity from "../../Components/Commodity/DeleteCommodity";
 import EditCommodity from "../../Components/Commodity/EditCommodity";
@@ -23,15 +22,17 @@ function Commodity() {
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal]= useState('');
   const URL = "http://localhost:3001/";
+  const [ search, setSearch]= useSearchParams();
+  const [limit , setLimit]= useState(5)
+
 
   useEffect(() => {
     getProducts();
-  }, []);
-  const [ search, setSearch]= useSearchParams();
+  }, [setSearch]);
 
   const getProducts = async (currentPage) => {
     await axios
-      .get(`${URL}products?_page=${currentPage}&_limit=5`)
+      .get(`${URL}products?_page=${currentPage}&_limit=${limit}`)
       .then((res) => {
         dispatch(setProduct(res.data));
         setTotal(res.headers['x-total-count']) 
@@ -68,7 +69,7 @@ function Commodity() {
         <AddCommodity />
       </div>
       <table className="border-2 border-[#013662] text-[#013662] mt-20 w-[80%] text-start">
-        <tbody>
+        
           <tr className=" bg-[#013662] text-white h-10">
             <th className="text-center"> تصویر </th>
             <th className="text-center"> نام کالا </th>
@@ -76,7 +77,7 @@ function Commodity() {
             <th className="text-center"> ویرایش </th>
             <th className="text-center"> حذف </th>
           </tr>
-
+        <tbody>
           {products.map((el) => {
             return (
               <tr key={el.id} className="  odd:bg-[#ccc9eb]">
@@ -120,7 +121,7 @@ function Commodity() {
         </tbody>
       </table>
 
-      <Pagination currentPage={currentPage} setSearch= {setSearch} total={total} getProducts={getProducts} />
+      <Pagination limit={limit} currentPage={currentPage} setSearch= {setSearch} total={total} getProducts={getProducts} />
     </div>
   );
 }

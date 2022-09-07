@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
-  name: "purchases",
+  name: "cart",
   initialState: {
     value: [],
   },
@@ -12,9 +12,10 @@ const slice = createSlice({
 
     addNumber: (state, action) => {
       const product = state.value.find((el) => el.id === action.payload);
-      state.value.map((el) => {
+      
+     product && product.number< product.productInfo.stock ? state.value.map((el) => {
         el.id === product.id ? { ...product, number: +product.number++ } : el
-      });
+      }): '';
     },
 
     reduceNumber: (state, action) => {
@@ -29,7 +30,8 @@ const slice = createSlice({
     },
 
     removeProduct: (state, action) => {
-      state.value.filter((el) => el.id !== action.payload);
+      const product = state.value.find((el) => el.id === action.payload);
+      state.value = state.value.filter((el) => el.id !== product.id);
     },
   },
 });

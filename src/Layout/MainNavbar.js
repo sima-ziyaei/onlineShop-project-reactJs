@@ -2,10 +2,13 @@ import { NavLink, Outlet} from 'react-router-dom';
 import '../styles/navbar.css';
 import {MdShoppingCart} from 'react-icons/md';
 import {MdManageAccounts} from 'react-icons/md';
+import { useSelector } from 'react-redux';
 
 //className='bg-[#7bdeeb] rounded-xl px-4 w-[100px] m-3 h-24 border-2 border-white text-white font-semibold p-2 hover:text-[#7bdeeb] hover:border-[#7bdeeb] hover:bg-white'
 
 const MainNavbar = () => {
+
+   const num= useSelector(state => state.cart.value)
 
     return (
         
@@ -14,7 +17,8 @@ const MainNavbar = () => {
                     <NavLink className='w-16 h-16 text-center z-20 p-4 rounded-[50%] bg-[#013662] text-[#ffcaaa] border-2 border-[#ffcaaa] font-bold' to='/'  >لوگو</NavLink>
                     <div className='flex'>
                         <NavLink to='manageform' className='ml-3 text-5xl text-white hover:text-[#013662]' > <MdManageAccounts /> </NavLink>
-                        <NavLink to='cart' className='text-5xl text-white hover:text-[#013662]'>  <MdShoppingCart /> </NavLink>
+                        <NavLink to='cart' className=' relative text-5xl text-white hover:text-[#013662] cart-number'>  <MdShoppingCart />
+                        <span class="absolute top-0 right-1 px-2 py-1 translate-x-1/2 bg-red-500 rounded-full text-xs text-white"> {num.length} </span> </NavLink>
 
                     </div>
                 </div>
