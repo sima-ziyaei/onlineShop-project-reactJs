@@ -29,10 +29,11 @@ function DeleteCommodity({id}) {
 
     const deleteProductRequest = async () => {
         try {
-          const response = await axiosPrivate.delete(`${PRODUCTS_URL}/${id}`);
-          axios.get(`${URL}products?_limit=5`)
-          .then((res)=>dispatch(setProduct(res.data)))
+          const response = await axios.delete(`${BASE_URL}${PRODUCTS_URL}/${id}`);
+          // axios.get(`${URL}products?_limit=5`)
+          // .then((res)=>dispatch(setProduct(res.data)))
           return response.data;
+          setModalIsOpen(false)
 
         } catch (error) {
           return Promise.reject(error);

@@ -7,6 +7,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { BsX } from "react-icons/bs";
 import MultiImageInput from 'react-multiple-image-input';
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddCommodity() {
   const URL = "http://localhost:3001/";
@@ -60,12 +62,47 @@ function AddCommodity() {
     e.preventDefault();
     console.log(formData.photo);
     setFormData((prev) => ({ ...prev, photo:images }));
-   
+
+    if(formData.name === '' || formData.price === '' || formData.stock === '' || formData.information === '' || formData.category === '' || formData.subCategory === '' || formData.photo === [] || formData.thumbnail === '' || formData.off === '' ){
+      toast.error(" !همه ی اطلاعات را پر کنید ", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+   else{
      axios
         .post(`http://localhost:3001/products`, formData)
         .then((response) => setImages([]))
         .catch((err) => alert(err.message));
       setModalIsOpen(false);
+      toast.success( " !کالا اضافه شد ", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData({
+        name: "",
+        price: "",
+        category: "",
+        subCategory: "",
+        information: "",
+        photo: [],
+        thumbnail:'',
+        stock: "",
+        off: "",
+      })
+
+   }
+    
     
   };
 
@@ -164,7 +201,7 @@ function AddCommodity() {
             className="border-2 outline-none rounded-sm pr-2 border-[#013662] my-2"
           >
             {category.map((el) => {
-              return <option value={el.name}> {el.name} </option>;
+              return <option onChange={handleFormData} name="category" value={el.name}> {el.name} </option>;
             })}
           </select>
           <select
@@ -197,6 +234,17 @@ function AddCommodity() {
           <button onClick={handleSubmit} className="w-[20%]  mr-[40%] my-2 font-bold  border-2 border-[#013662] text-[#013662] hover:bg-[#013662] hover:text-white p-3 rounded-xl"> اضافه کردن </button>
         </form>
       </Modal>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

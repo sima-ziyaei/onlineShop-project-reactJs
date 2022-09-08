@@ -1,10 +1,11 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/card.css";
-import { setPurchases, addNumber, reduceNumber } from "../../redux/cartSlice";
+import { setPurchases } from "../../redux/cartSlice";
 import ImageSlider from "../ImageSlider";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function CardInfo() {
   const { id } = useParams();
@@ -23,9 +24,16 @@ function CardInfo() {
   const addItems = (productId) => {
     const product = buyItems.find((el) => el.id === state.productId);
     if (product) {
-        alert ("قبلا اضافه شده")
-    }
-    else {
+      toast.error("  کالا به سبد خرید اضافه شده است ", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
       dispatch(
         setPurchases([
           ...buyItems.filter((el) => el.id != productId),
@@ -36,7 +44,17 @@ function CardInfo() {
           },
         ])
       );
-    }
+    
+    toast.success("کالا به سبد خرید اضافه شد!", {
+      position: "top-center",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
   };
 
   useEffect(() => {
@@ -44,13 +62,6 @@ function CardInfo() {
   }, []);
 
   const getCard = () => {
-    // axios
-    //   .get(`${URL}products?id=${id}`)
-    //   .then((res) => {
-    //     setCard(res.data);
-    //     console.log(res.data[0].photo);
-    //   })
-    //   .catch((err) => console.log("error:" + err));
     setCard(products.filter((el) => el.id === id));
   };
 
@@ -71,29 +82,11 @@ function CardInfo() {
               />
               })} */}
               <ImageSlider image={el.photo} />
+
               <div className="flex flex-col justify-around items-start ">
                 <p className="text-[#013662] text-2xl font-bold ">{el.name}</p>
                 {/* <input  type='number' value={number} onChange={handleChangeNumber} className='border-2 border-[#013662] w-[50px] rounded-lg pr-1' /> */}
-                {/* <div className="mr-4">
-                  <span
-                    onClick={() => dispatch(addNumber(el.id))}
-                    className=" py-1 px-2 text-lg cursor-pointer rounded-full w-[20px] h-[20px] bg-[#013662] text-white"
-                  >
-                    +
-                  </span>
-                  {buyItems.map((item) => {
-                    if (item.id === el.id) {
-                      return <span> {item.number} </span>;
-                    }
-                  })}
 
-                  <span
-                    onClick={() => dispatch(reduceNumber(el.id))}
-                    className=" py-1 px-3 mr-5 cursor-pointer rounded-full w-[20px] h-[20px] bg-[#013662] text-white text-lg"
-                  >
-                    -
-                  </span>
-                </div> */}
                 <button
                   onClick={() => addItems(el.id)}
                   className=" text-white rounded-lg p-3 text-xl bg-[#013662] hover:scale-[0.9] "
@@ -157,6 +150,17 @@ function CardInfo() {
       >
         بازگشت
       </button>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

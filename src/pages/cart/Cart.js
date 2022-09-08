@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNumber, reduceNumber, removeProduct } from "../../redux/cartSlice";
+import { addNumber, reduceNumber, removeProduct, setTotalPrice } from "../../redux/cartSlice";
 import { BsTrashFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+//import { loadState, saveState } from '../../Components/Cart/LocalStorage'
 
 function Cart() {
   const buyItems = useSelector((state) => state.cart.value);
-  const product = useSelector((state) => state.product.productItem);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  // const product = useSelector((state) => state.product.productItem);
+  // const [totalPrice, setTotalPrice] = useState(0);
   let price = 0;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const persianNumber = (x) => x.toLocaleString("fa-IR");
 
+ 
+
   useEffect(() => {
     buyItems.map((el) => {
        price = price+ el.number * el.productInfo.Price
-      setTotalPrice( price);
+      dispatch(setTotalPrice( price));
     });
   }, [buyItems]);
 
@@ -27,17 +31,20 @@ function Cart() {
         <div className=" w-[100%]  flex flex-col items-center justify-center">
           <table className="border-2 border-[#013662] text-[#013662] mt-20 mb-10 w-[80%] text-start">
             <tr className=" bg-[#013662] text-white h-10">
+              <th> حذف </th>
               <th> تصویر </th>
               <th> کالا </th>
               <th> قیمت </th>
               <th> تعداد </th>
               <th> قیمت نهایی </th>
-              <th> حذف </th>
             </tr>
             <tbody>
               {buyItems.map((el) => {
                 return (
-                  <tr className="  odd:bg-[#ccc9eb]">
+                  <tr className=" even:bg-[#ccc9eb]">
+                    <td className="text-[#013662] cursor-pointer pr-2 text-center text-lg" onClick={() => dispatch(removeProduct(el.id))}>    
+                      <BsTrashFill/>
+                    </td>
                     <td className=" flex justify-center">
                       
                       <img
@@ -69,12 +76,7 @@ function Cart() {
                       
                       {persianNumber(+el.number * el.productInfo.Price)}
                     </td>
-                    <td className="text-[#013662] cursor-pointer flex justify-center items-center text-lg">
-                      
-                      <BsTrashFill
-                        onClick={() => dispatch(removeProduct(el.id))}
-                      />
-                    </td>
+                    
                   </tr>
                 );
               })}
@@ -82,9 +84,9 @@ function Cart() {
           </table>
           <div className="flex justify-around w-[100%] ">
             <div className="text-[#013662] text-3xl font-bold border-b-2 border-[#013662]"> جمع کل: {persianNumber(totalPrice)} تومان </div>
-            <button className=" text-white rounded-lg p-3 text-xl bg-[#013662] hover:scale-[0.9] ">
+            <button onClick={()=> navigate('/cart/buy')} className=" text-white rounded-lg p-3 text-xl bg-[#013662] hover:scale-[0.9] ">
               
-              نهایی کردن سبد خرید
+              ادامه فرآیند خرید
             </button>
             <button
               onClick={() => navigate("/")}
